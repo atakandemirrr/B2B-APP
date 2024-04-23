@@ -11,30 +11,11 @@ namespace B2B_Deneme.Controllers
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-        }
-        public IActionResult LoginPage()
-        {
-            return View();
-        }
-        public IActionResult SingUpPage()
-        {
-            return View();
-        }
+        }  
         public IActionResult Index()
         {
             return View();
         }
-
-        public IActionResult MusteriList()
-        {
-            return View();
-        }
-
-        public IActionResult Stoklar()
-        {
-            return View();
-        }
-
  
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

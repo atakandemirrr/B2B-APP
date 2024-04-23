@@ -1,11 +1,6 @@
-
-@{
-    ViewBag.Title = "Giriþ Yap";
-    Layout = "";
-}
-<!DOCTYPE html>
+ï»¿<!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,53 +34,18 @@
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="~/css/responsive.css">
     <script src="~/js/Global.js"></script>
-  </head>
-  <body>
-    <!-- Loader starts-->
-    <div class="loader-wrapper">
-      <div class="theme-loader">    
-        <div class="loader-p"></div>
-      </div>
-    </div>
-    <!-- Loader ends-->
-    <!-- page-wrapper Start-->
-    <section>         
-      <div class="container-fluid p-0">
-        <div class="row">
-          <div class="col-12">
-            <div class="login-card">
-              <form class="theme-form login-form">
-                <h4>Giriþ Sayfasý</h4>
-                <h6>Hoþgeldiniz! Hesabýnýza giriþ yapýn.</h6>
-                <div class="form-group">
-                  <label>Mail Adresi</label>
-                  <div class="input-group"><span class="input-group-text"><i class="icon-email"></i></span>
-                    <input class="form-control" type="email" required="" placeholder="Test@gmail.com">
-                  </div>
+</head>
+
+
+<body>
+
+            <div class="page-body">
+                             <div class="container-fluid">
+                    <main role="main" class="pb-3">
+                        @RenderBody()
+                    </main>
                 </div>
-                <div class="form-group">
-                  <label>Þifre</label>
-                  <div class="input-group"><span class="input-group-text"><i class="icon-lock"></i></span>
-                    <input class="form-control" type="password" name="login[password]" required="" placeholder="*********">
-                   @*  <div class="show-hide"><span class="show">                         </span></div> *@
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="checkbox">
-                    <input id="checkbox1" type="checkbox">
-                    <label for="checkbox1">Þifremi Hatýrla</label>
-                    </div><a class="link" href="forget-password.html">Parolanýzý mý unuttunuz??</a>
-                </div>
-                <div class="form-group">
-                  <button class="btn btn-primary btn-block" type="submit">Giriþ Yap</button>
-                </div>
-                            <p>Hesabýnýz yok mu? <a ýd="btnOpenModal" data-url="" @* class="ms-2" asp-controller="Home" asp-action="SingUpPage" *@>Hesap Oluþtur</a></p>
-              </form>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
     <!-- page-wrapper end-->
     <!-- latest jquery-->
     <script src="~/js/jquery-3.5.1.min.js"></script>
@@ -104,10 +64,11 @@
     <script src="~/js/script.js"></script>
     <!-- login js-->
     <!-- Plugin used-->
-    
-
-  </body>
-<div class="logo-wrapper"><a asp-controller = "Home" asp-action = "Index"><img class="img-fluid" src="~/images/logo/logo.png" alt=""></a></div>
-
-
+   
+   
+    <div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalContracts" aria-hidden="true"></div>
+    <div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalContracts" aria-hidden="true"></div>
+    <div class="modal fade" id="Modal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalContracts" aria-hidden="true"></div>
+    @RenderSection("Scripts", required: false)
+</body>
 </html>
