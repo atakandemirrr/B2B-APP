@@ -25,11 +25,17 @@ namespace B2B_Deneme.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult MusteriList()
         {
             return View();
         }
 
+        public IActionResult Stoklar()
+        {
+            return View();
+        }
+
+ 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
