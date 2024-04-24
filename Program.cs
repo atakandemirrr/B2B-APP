@@ -1,4 +1,12 @@
+
+using Microsoft.EntityFrameworkCore;
+using B2B_Deneme.Models;
+
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DataConnection")));
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
