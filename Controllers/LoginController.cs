@@ -72,13 +72,10 @@ namespace B2B_Deneme.Controllers
         {
 
             List<string> existingEmails = _context.Musteri().AsEnumerable().Select(row => row.Field<string>("cari_EMail")).ToList();
-
-       
-
-            var data = _context.CandidateUsers.FirstOrDefault(x => x.Email == a.Email );
-            if (data == null)
+            if (existingEmails.Contains(a.Email))
             {
-                if (existingEmails.Contains(a.Email))
+                var data = _context.CandidateUsers.FirstOrDefault(x => x.Email == a.Email);
+                if (data == null)
                 {
                     _context.CandidateUsers.Add(a);
                     _context.SaveChanges();

@@ -1,4 +1,5 @@
 ﻿using B2B_Deneme.Models;
+using B2B_Deneme.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -20,9 +21,11 @@ namespace B2B_Deneme.Controllers
         [HttpGet]
         public IActionResult MusteriList()
         {
-            List<DataRow> Musteriler = _context.Musteri().AsEnumerable().ToList();
+            VMMusteriler model = new VMMusteriler();
 
-            return View();
+           model.Musteriler  = _context.Musteri().AsEnumerable().ToList();
+
+            return View(model);
         }
     }
 }

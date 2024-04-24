@@ -1,4 +1,4 @@
-@* @model List<DataRow> *@
+@model B2B_Deneme.ViewModels.VMMusteriler
 @{
    ViewData["Title"] = "Müşteri Listesi";
 }
@@ -7,7 +7,7 @@
 
         <div class="card">
             <div class="card-header">
-                <h5>Müşteri Listesisads</h5>
+                <h5>Müşteri Listesi</h5>
             </div>
             <div class="table-responsive">
                 <table class="table table-hover">
@@ -22,9 +22,8 @@
                         </tr>
                     </thead>
                     <tbody>
-      @*               @foreach (var musteri in Model)
+                    @foreach (var musteri in Model.Musteriler)
                     {
-
                         <tr>
                             <th scope="row">5</th>
                             <td>@musteri["cari_kod"]</td>
@@ -35,7 +34,8 @@
                             <td>@musteri["cari_vdaire_no"]</td>
 
                         </tr>
-                    } *@
+                    }
+                    
                     
                     </tbody>
                 </table>
