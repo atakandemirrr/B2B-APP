@@ -16,8 +16,18 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "ancmHostingModel": "OutOfProcess",
-      "nativeDebugging": true,
-      "sqlDebugging": true
+      "nativeDebugging": false,
+      "sqlDebugging": false
+    },
+    "WSL": {
+      "commandName": "WSL2",
+      "launchBrowser": true,
+      "launchUrl": "http://localhost:5295",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://localhost:5295"
+      },
+      "distributionName": ""
     }
   },
   "iisSettings": {

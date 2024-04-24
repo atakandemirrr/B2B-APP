@@ -1,0 +1,47 @@
+@{
+    ViewBag.Title = "Üye Ol";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+    <section>         
+      <div class="container-fluid p-0"> 
+        <div class="row m-0">
+          <div class="col-12 p-0">    
+            <div class="login-card">
+                    <form class="theme-form login-form" asp-controller="Login" asp-action="SignUpPage" method="post">
+                        <input type="hidden" name="CreDate" value="@DateTime.Today.ToString("yyyy-MM-dd")">
+                <h4>Hesap Oluþtur</h4>
+                        <h6>Hesap oluþturmak için bilgilerinizi girin</h6>
+                <div class="form-group">
+                   <div class="small-group">
+                    <div class="input-group"><span class="input-group-text"><i class="icon-user"></i></span>
+                                    <input class="form-control" name="Name" type="text" required="" placeholder="Adýnýz">
+                    </div>
+                    <div class="input-group"><span class="input-group-text"><i class="icon-user"></i></span>
+                                    <input class="form-control" name="Surname" type="text" required="" placeholder="Soyadýnýz">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Email</label>
+                  <div class="input-group"><span class="input-group-text"><i class="icon-email"></i></span>
+                                <input class="form-control" name="Email" type="email" required="" placeholder="Test@gmail.com">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Parola</label>
+                  <div class="input-group"><span class="input-group-text"><i class="icon-lock"></i></span>
+                    <input class="form-control" type="password" name="password" required="" placeholder="*********">
+                    <div class="show-hide"><span class="show">                         </span></div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <button class="btn btn-primary btn-block" type="submit">Üye Ol</button>
+                </div>
+               <p>Zaten üye misiniz?<a class="ms-2" asp-controller="Login" asp-action="LoginPage">Giriþ Sayfasý</a></p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>

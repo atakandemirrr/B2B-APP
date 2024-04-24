@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using B2B_Deneme.Models;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Data;
 
 
 
@@ -31,28 +33,70 @@ namespace B2B_Deneme.Controllers
         [HttpPost]
         public async Task<IActionResult> LoginPage(User p)
         {
-           
+
             var data = _context.Users.FirstOrDefault(x => x.Email == p.Email && x.Password == p.Password);
-            if (data != null) 
+            if (data != null)
             {
-               
+
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, p.Email)
                 };
-                var userIdentity = new ClaimsIdentity(claims, "Login");
-                var principal = new ClaimsPrincipal(userIdentity);
-                await HttpContext.SignInAsync(principal);
+                var userIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var principal = new AuthenticationProperties
+                {
 
+                    IsPersistent = true,
+                    ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(20)
+                };
+
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(userIdentity), principal);
                 return RedirectToAction("Index", "Home");
 
             }
             return View();
         }
 
-        public IActionResult SingUpPage()
+
+
+        [AllowAnonymous]
+        [HttpGet]
+        public IActionResult SignUpPage()
         {
             return View();
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public IActionResult SignUpPage(CandidateUser a)
+        {
+
+            List<string> existingEmails = _context.Musteri().AsEnumerable().Select(row => row.Field<string>("Email")).ToList();
+
+       
+
+            var data = _context.CandidateUsers.FirstOrDefault(x => x.Email == a.Email );
+            if (data == null)
+            {
+                if (existingEmails.Contains(a.Email))
+                {
+                    _context.CandidateUsers.Add(a);
+                    _context.SaveChanges();
+                    return RedirectToAction("LoginPage", "Login");
+                }
+            }
+            return View();
+        }
+
+
+
+
+        [HttpGet]
+        public async Task<IActionResult> LogOut() /*Çıkış İşlemi İçin Kullanılıcak*/
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("LoginPage", "Login");
+
         }
     }
 }
