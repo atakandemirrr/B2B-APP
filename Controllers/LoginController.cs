@@ -71,7 +71,7 @@ namespace B2B_Deneme.Controllers
         public IActionResult SignUpPage(CandidateUser a)
         {
 
-            List<string> existingEmails = _context.Musteri().AsEnumerable().Select(row => row.Field<string>("Email")).ToList();
+            List<string> existingEmails = _context.Musteri().AsEnumerable().Select(row => row.Field<string>("cari_EMail")).ToList();
 
        
 
@@ -84,6 +84,7 @@ namespace B2B_Deneme.Controllers
                     _context.SaveChanges();
                     return RedirectToAction("LoginPage", "Login");
                 }
+                return View();
             }
             return View();
         }

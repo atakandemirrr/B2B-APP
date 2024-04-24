@@ -16,7 +16,7 @@ namespace B2B_Deneme.Models
             using (SqlConnection connection = new SqlConnection("Server=Fdb-TECH;Database=MikroDB_V16_Fdbtech;Trusted_Connection=True;MultipleActiveResultSets=true;"))
             {
                 connection.Open();
-                SqlCommand command = new SqlCommand("SELECT * FROM dbo.CARI_HESAPLAR", connection);
+                SqlCommand command = new SqlCommand("SELECT cari_kod,cari_unvan1,cari_EMail,cari_CepTel,cari_vdaire_adi,cari_vdaire_no FROM dbo.CARI_HESAPLAR", connection);
                 SqlDataAdapter adapter = new SqlDataAdapter(command);
                 DataTable dataTable = new DataTable();
                 adapter.Fill(dataTable);
