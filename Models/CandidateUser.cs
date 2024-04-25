@@ -16,6 +16,8 @@ namespace B2B_Deneme.Models
         [Required]
         [MaxLength(25)]
         public string Email { get; set; }
-        public bool IsPasivve { get; set; }/*0 aktif 1 pasif*/
+        public int Statu { get; set; }/*0 onayda 1 oanylandı 2 pasif*/
+      
+
     }
 }

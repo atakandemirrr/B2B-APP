@@ -1,6 +1,6 @@
 @model IEnumerable<B2B_Deneme.Models.User>
 @{
-    ViewData["Title"] = "Ürünler";
+    ViewData["Title"] = "Kullanıcılar";
 
 }
 
@@ -9,7 +9,7 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header pb-0">
-                    <h5>Stoklar</h5>
+                    <h5>Kullanıcılar</h5>
                 </div>
                 <div class="card-header pb-0 text-right" >
                     <a class="btn btn-primary" asp-controller="Users" asp-action="CreateUser"><span>Kullanıcı Oluştur</span></a>
@@ -26,6 +26,7 @@
                                     <th>Soyadı</th>
                                     <th>EMail</th>
                                     <th>Paralo</th>
+                                    <th>Admin Mi</th>
                                     <th>Durumu</th>
                                     <th>Statü Değiştir</th>
                                 </tr>
@@ -41,6 +42,16 @@
                                         <td>@User.Surname</td>
                                         <td>@User.Email</td>
                                         <td>@User.Password</td>
+                                        <td>
+                                            @if (User.IsAdmin == false)
+                                            {
+                                                <span class="badge bg-danger text-white">Hayır</span>
+                                            }
+                                            else if (User.IsAdmin == true)
+                                            {
+                                                <span class="badge bg-success text-white">Evet</span>
+                                            }
+                                        </td>
                                         <td>
                                             @if (User.IsPasivve == false)
                                             {
@@ -67,6 +78,9 @@
                                                 </form>
                                             }
                                         </td>
+                                        <td>
+                                            <a href="/Users/UpdateUser/@User.UserId" ><li data-feather="edit"></li></a>
+                                        <td>
                                  </tr>
                                 }
                             </tbody>

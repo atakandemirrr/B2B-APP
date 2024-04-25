@@ -1,0 +1,95 @@
+@model IEnumerable<B2B_Deneme.Models.CandidateUser>
+
+@{
+    ViewData["Title"] = "Aday Kullanıcılar";
+
+}
+
+<div class="container-fluid list-products">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header pb-0">
+                    <h5>Aday Kullanıcılar</h5>
+                </div>
+                <div class="card-header pb-0 text-right">
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive product-table">
+                        <table class="display" id="basic-1">
+                            <thead>
+                                <tr>
+                                    <th>UserId</th>
+                                    <th>Kayıt Tarihi</th>
+                                    <th>Adı</th>
+                                    <th>Soyadı</th>
+                                    <th>EMail</th>
+                                    <th>Paralo</th>
+                                    <th>Durumu</th>
+                                    <th>Statü Değiştir</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var User in Model)
+                                {
+                                    <tr>
+
+                                        <td>@User.UserId</td>
+                                        <td>@User.CreDate</td>
+                                        <td class="font-success">@User.Name</td>
+                                        <td>@User.Surname</td>
+                                        <td>@User.Email</td>
+                                        <td>@User.Password</td>
+                                        <td>
+                                            @if (User.Statu == 0)
+                                            {
+                                                <span class="badge bg-warning text-white">Beklemede</span>
+                                            }
+                                            else if (User.Statu == 1)
+                                            {
+                                                <span class="badge bg-success text-white">Onaylandı</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-danger text-white">Onaylanmadı</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <form method="post" asp-controller="Users" asp-action="CandidateUsers">
+                                                        <input type="hidden" name="userId" value="@User.UserId" />
+                                                        <input type="hidden" name="Statu" value="2" />
+                                                        <button class="btn btn-danger btn-xs" type="submit" data-original-title="btn btn-danger btn-xs" title="">Red</button>
+                                                    </form>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <form method="post" asp-controller="Users" asp-action="CandidateUsers">
+                                                        <input type="hidden" name="userId" value="@User.UserId" />
+                                                        <input type="hidden" name="Statu" value="1" />
+                                                        <button data-userId="@User.UserId" data-Statu="1" id="btnStatuDegistir" class="btn btn-primary btn-xs" type="submit" data-original-title="btn btn-danger btn-xs" title="">Onay</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                          
+
+                                        </td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ @* 
+   --Ajax ile Submit 
+   Jqury
+  var USerId =$(this).attr("data-userId")
+   /Users/CandidateUsers?userId=USerId&Statu=1
+ *@
+
