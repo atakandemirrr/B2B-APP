@@ -14,18 +14,19 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">First Name</th>
-                            <th scope="col">Last Name</th>
-                            <th scope="col">Username</th>
-                            <th scope="col">Role</th>
-                            <th scope="col">Country</th>
+                            <th scope="col">Cari Kod</th>
+                            <th scope="col">Müşteri Adı</th>
+                            <th scope="col">E Mail</th>
+                            <th scope="col">Cep Telefonu</th>
+                        <th scope="col">Vergi Dairesi</th>
+                        <th scope="col">Vergi No</th>
                         </tr>
                     </thead>
                     <tbody>
                     @foreach (var musteri in Model.Musteriler)
                     {
                         <tr>
-                            <th scope="row">5</th>
+                            <th>@musteri["Sira"]</th>
                             <td>@musteri["cari_kod"]</td>
                             <td>@musteri["cari_unvan1"]</td>
                             <td>@musteri["cari_EMail"]</td>

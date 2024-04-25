@@ -1,3 +1,4 @@
+@model IEnumerable<B2B_Deneme.Models.User>
 @{
     ViewData["Title"] = "Ürünler";
 
@@ -10,53 +11,64 @@
                 <div class="card-header pb-0">
                     <h5>Stoklar</h5>
                 </div>
+                <div class="card-header pb-0 text-right" >
+                    <a class="btn btn-primary" asp-controller="Users" asp-action="CreateUser"><span>Kullanıcı Oluştur</span></a>
+                 
+                </div>
                 <div class="card-body">
                     <div class="table-responsive product-table">
                         <table class="display" id="basic-1">
                             <thead>
                                 <tr>
-                                    
-                                    <th>Details</th>
-                                    <th>Amount</th>
-                                    <th>Stock</th>
-                                    <th>Start date</th>
-                                    <th>Action</th>
+                                    <th>UserId</th>
+                                    <th>Kayıt Tarihi</th>
+                                    <th>Adı</th>
+                                    <th>Soyadı</th>
+                                    <th>EMail</th>
+                                    <th>Paralo</th>
+                                    <th>Durumu</th>
+                                    <th>Statü Değiştir</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach(var User in Model)
+                                {
                                 <tr>
                                   
-                                    <td>
-                                        <a href="product-page.html">
-                                            <h6> Red Lipstick </h6>
-                                        </a><span>Interchargebla lens Digital Camera with APS-C-X Trans CMOS Sens</span>
-                                    </td>
-                                    <td>$10</td>
-                                    <td class="font-success">In Stock</td>
-                                    <td>2011/04/25</td>
-                                    <td>
-                                        <button class="btn btn-danger btn-xs" type="button" data-original-title="btn btn-danger btn-xs" title="">Delete</button>
-                                        <button class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs" title="">Edit</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    
-                                    <td>
-                                        <a href="product-page.html">
-                                            <h6> Pink Lipstick </h6>
-                                        </a>
-                                        <p>Interchargebla lens Digital Camera with APS-C-X Trans CMOS Sens</p>
-                                    </td>
-                                    <td>$10</td>
-                                    <td class="font-primary">Low Stock</td>
-                                    <td>2011/04/25</td>
-                                    <td>
-                                        <button class="btn btn-danger btn-xs" type="button" data-original-title="btn btn-danger btn-xs" title="">Delete</button>
-                                        <button class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs" title="">Edit</button>
-                                    </td>
-                                </tr>
-                           
-                                </tr>
+                                    <td>@User.UserId</td>
+                                        <td>@User.CreDate</td>
+                                        <td class="font-success">@User.Name</td>
+                                        <td>@User.Surname</td>
+                                        <td>@User.Email</td>
+                                        <td>@User.Password</td>
+                                        <td>
+                                            @if (User.IsPasivve == false)
+                                            {
+                                                <span class="badge bg-success text-white">Aktif</span>
+                                            }
+                                            else if (User.IsPasivve == true)
+                                            {
+                                                <span class="badge bg-danger text-white">Pasif</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (User.IsPasivve == false)
+                                            {
+                                                <form method="post" asp-controller="Users" asp-action="UserStatuUpdate">
+                                                    <input type="hidden" name="userId" value="@User.UserId" />
+                                                    <button type="submit" class="btn btn-danger btn-xs">Pasif Yap</button>
+                                                </form>
+                                            }
+                                            else if (User.IsPasivve == true)
+                                            {
+                                                <form method="post" asp-controller="Users" asp-action="UserStatuUpdate">
+                                                    <input type="hidden" name="userId" value="@User.UserId" />
+                                                    <button type="submit" class="btn btn-primary btn-xs">Aktif Yap</button>
+                                                </form>
+                                            }
+                                        </td>
+                                 </tr>
+                                }
                             </tbody>
                         </table>
                     </div>

@@ -1,3 +1,4 @@
+@model B2B_Deneme.ViewModels.VMMusteriler 
 @{
     ViewData["Title"] = "Ürünler";
 
@@ -15,174 +16,22 @@
                         <table class="display" id="basic-1">
                             <thead>
                                 <tr>
-                                    <th>Image</th>
-                                    <th>Details</th>
-                                    <th>Amount</th>
-                                    <th>Stock</th>
-                                    <th>Start date</th>
-                                    <th>Action</th>
+                                    <th>Stok Kodu</th>
+                                    <th>Stok Adı</th>
+                                    <th>Miktar</th>
+                                    <th>Fiyat</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach(var stok in Model.Stoklar)
+                                {
                                 <tr>
-                                    <td><a href="product-page.html"><img src="~/images/ecommerce/product-table-1.png" alt=""></a></td>
-                                    <td>
-                                        <a href="product-page.html">
-                                            <h6> Red Lipstick </h6>
-                                        </a><span>Interchargebla lens Digital Camera with APS-C-X Trans CMOS Sens</span>
-                                    </td>
-                                    <td>$10</td>
-                                    <td class="font-success">In Stock</td>
-                                    <td>2011/04/25</td>
-                                    <td>
-                                        <button class="btn btn-danger btn-xs" type="button" data-original-title="btn btn-danger btn-xs" title="">Delete</button>
-                                        <button class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs" title="">Edit</button>
-                                    </td>
+                                        <td>@stok["sto_kod"]</td>
+                                        <td>@stok["sto_isim"]</td>
+                                        <td class="font-success">@stok["Miktar"]</td>
+                                        <td>@stok["sfiyat_fiyati"]</td>
                                 </tr>
-                                <tr>
-                                    <td><a href="product-page.html"><img src="~/images/ecommerce/product-table-2.png" alt=""></a></td>
-                                    <td>
-                                        <a href="product-page.html">
-                                            <h6> Pink Lipstick </h6>
-                                        </a>
-                                        <p>Interchargebla lens Digital Camera with APS-C-X Trans CMOS Sens</p>
-                                    </td>
-                                    <td>$10</td>
-                                    <td class="font-primary">Low Stock</td>
-                                    <td>2011/04/25</td>
-                                    <td>
-                                        <button class="btn btn-danger btn-xs" type="button" data-original-title="btn btn-danger btn-xs" title="">Delete</button>
-                                        <button class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs" title="">Edit</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="product-page.html"><img src="~/images/ecommerce/product-table-3.png" alt=""></a></td>
-                                    <td>
-                                        <a href="product-page.html">
-                                            <h6> Gray Lipstick </h6>
-                                        </a>
-                                        <p>Interchargebla lens Digital Camera with APS-C-X Trans CMOS Sens</p>
-                                    </td>
-                                    <td>$10</td>
-                                    <td class="font-danger">out of stock</td>
-                                    <td>2011/04/25</td>
-                                    <td>
-                                        <button class="btn btn-danger btn-xs" type="button" data-original-title="btn btn-danger btn-xs" title="">Delete</button>
-                                        <button class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs" title="">Edit</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="product-page.html"><img src="~/images/ecommerce/product-table-4.png" alt=""></a></td>
-                                    <td>
-                                        <a href="product-page.html">
-                                            <h6> Green Lipstick </h6>
-                                        </a>
-                                        <p>Interchargebla lens Digital Camera with APS-C-X Trans CMOS Sens</p>
-                                    </td>
-                                    <td>$10</td>
-                                    <td class="font-primary">Low Stock</td>
-                                    <td>2011/04/25</td>
-                                    <td>
-                                        <button class="btn btn-danger btn-xs" type="button" data-original-title="btn btn-danger btn-xs" title="">Delete</button>
-                                        <button class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs" title="">Edit</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="product-page.html"><img src="~/images/ecommerce/product-table-5.png" alt=""></a></td>
-                                    <td>
-                                        <a href="product-page.html">
-                                            <h6> Black Lipstick </h6>
-                                        </a>
-                                        <p>Interchargebla lens Digital Camera with APS-C-X Trans CMOS Sens</p>
-                                    </td>
-                                    <td>$10</td>
-                                    <td class="font-success">In Stock</td>
-                                    <td>2011/04/25</td>
-                                    <td>
-                                        <button class="btn btn-danger btn-xs" type="button" data-original-title="btn btn-danger btn-xs" title="">Delete</button>
-                                        <button class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs" title="">Edit</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="product-page.html"><img src="~/images/ecommerce/product-table-6.png" alt=""></a></td>
-                                    <td>
-                                        <a href="product-page.html">
-                                            <h6> White Lipstick </h6>
-                                        </a>
-                                        <p>Interchargebla lens Digital Camera with APS-C-X Trans CMOS Sens</p>
-                                    </td>
-                                    <td>$10</td>
-                                    <td class="font-primary">Low Stock</td>
-                                    <td>2011/04/25</td>
-                                    <td>
-                                        <button class="btn btn-danger btn-xs" type="button" data-original-title="btn btn-danger btn-xs" title="">Delete</button>
-                                        <button class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs" title="">Edit</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="product-page.html"><img src="~/images/ecommerce/product-table-1.png" alt=""></a></td>
-                                    <td>
-                                        <a href="product-page.html">
-                                            <h6> light Lipstick </h6>
-                                        </a>
-                                        <p>Interchargebla lens Digital Camera with APS-C-X Trans CMOS Sens</p>
-                                    </td>
-                                    <td>$10</td>
-                                    <td class="font-danger">out of stock</td>
-                                    <td>2011/04/25</td>
-                                    <td>
-                                        <button class="btn btn-danger btn-xs" type="button" data-original-title="btn btn-danger btn-xs" title="">Delete</button>
-                                        <button class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs" title="">Edit</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="product-page.html"><img src="~/images/ecommerce/product-table-2.png" alt=""></a></td>
-                                    <td>
-                                        <a href="product-page.html">
-                                            <h6> Gliter Lipstick </h6>
-                                        </a>
-                                        <p>Interchargebla lens Digital Camera with APS-C-X Trans CMOS Sens</p>
-                                    </td>
-                                    <td>$10</td>
-                                    <td class="font-danger">out of stock</td>
-                                    <td>2011/04/25</td>
-                                    <td>
-                                        <button class="btn btn-danger btn-xs" type="button" data-original-title="btn btn-danger btn-xs" title="">Delete</button>
-                                        <button class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs" title="">Edit</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="product-page.html"><img src="~/images/ecommerce/product-table-3.png" alt=""></a></td>
-                                    <td>
-                                        <a href="product-page.html">
-                                            <h6> green Lipstick </h6>
-                                        </a>
-                                        <p>Interchargebla lens Digital Camera with APS-C-X Trans CMOS Sens</p>
-                                    </td>
-                                    <td>$10</td>
-                                    <td class="font-success">In Stock</td>
-                                    <td>2011/04/25</td>
-                                    <td>
-                                        <button class="btn btn-danger btn-xs" type="button" data-original-title="btn btn-danger btn-xs" title="">Delete</button>
-                                        <button class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs" title="">Edit</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="product-page.html"><img src="~/images/ecommerce/product-table-4.png" alt=""></a></td>
-                                    <td>
-                                        <a href="product-page.html">
-                                            <h6> Yellow Lipstick </h6>
-                                        </a>
-                                        <p>Interchargebla lens Digital Camera with APS-C-X Trans CMOS Sens</p>
-                                    </td>
-                                    <td>$10</td>
-                                    <td class="font-danger">out of stock</td>
-                                    <td>2011/04/25</td>
-                                    <td>
-                                        <button class="btn btn-danger btn-xs" type="button" data-original-title="btn btn-danger btn-xs" title="">Delete</button>
-                                        <button class="btn btn-primary btn-xs" type="button" data-original-title="btn btn-danger btn-xs" title="">Edit</button>
-                                    </td>
-                                </tr>
+                                }
                             </tbody>
                         </table>
                     </div>

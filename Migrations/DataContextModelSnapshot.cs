@@ -38,6 +38,9 @@ namespace B2B_Deneme.Migrations
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
 
+                    b.Property<bool>("IsPasivve")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -63,11 +66,6 @@ namespace B2B_Deneme.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"), 1L, 1);
 
-                    b.Property<string>("CkKod")
-                        .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
-
                     b.Property<DateTime>("CreDate")
                         .HasColumnType("datetime2");
 
@@ -75,6 +73,9 @@ namespace B2B_Deneme.Migrations
                         .IsRequired()
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
+
+                    b.Property<bool>("IsPasivve")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()

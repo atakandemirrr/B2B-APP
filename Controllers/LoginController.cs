@@ -34,7 +34,7 @@ namespace B2B_Deneme.Controllers
         public async Task<IActionResult> LoginPage(User p)
         {
 
-            var data = _context.Users.FirstOrDefault(x => x.Email == p.Email && x.Password == p.Password);
+            var data = _context.Users.FirstOrDefault(x => x.Email == p.Email && x.Password == p.Password && x.IsPasivve==false);
             if (data != null)
             {
 

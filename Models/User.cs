@@ -22,12 +22,7 @@ namespace B2B_Deneme.Models
         [Required]
         [MaxLength(25)]
         public string Email { get; set; }
-
-        [Required]
-        [MaxLength(25)]
-        public string CkKod { get; set; }
-
-
+        public bool IsPasivve { get; set; }/*0 aktif 1 pasif*/
     }
 }
 

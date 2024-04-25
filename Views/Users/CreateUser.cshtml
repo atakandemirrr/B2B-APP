@@ -1,0 +1,44 @@
+@{
+    ViewBag.Title = "Kullanýcý Oluþtur";
+   
+}
+
+    <section>         
+      <div class="container-fluid p-0"> 
+        <div class="row m-0">
+          <div class="col-12 p-0">    
+            <div class="login-card">
+                    <form class="theme-form login-form" asp-controller="Users" asp-action="CreateUser" method="post">
+                        <input type="hidden" name="CreDate" value="@DateTime.Today.ToString("yyyy-MM-dd")">
+                <h4>Kullanýcý Oluþtur</h4>
+                <div class="form-group">
+                   <div class="small-group">
+                    <div class="input-group"><span class="input-group-text"><i class="icon-user"></i></span>
+                                    <input class="form-control" name="Name" type="text" required="" placeholder="Adý">
+                    </div>
+                    <div class="input-group"><span class="input-group-text"><i class="icon-user"></i></span>
+                                    <input class="form-control" name="Surname" type="text" required="" placeholder="Soyadý">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Email</label>
+                  <div class="input-group"><span class="input-group-text"><i class="icon-email"></i></span>
+                                <input class="form-control" name="Email" type="email" required="" placeholder="Test@gmail.com">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Parola</label>
+                  <div class="input-group"><span class="input-group-text"><i class="icon-lock"></i></span>
+                    <input class="form-control" type="text" name="password" required="" >
+                  </div>
+                </div>
+                <div class="form-group">
+                  <button class="btn btn-primary btn-block" type="submit">Kaydet</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
