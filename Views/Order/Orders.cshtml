@@ -1,23 +1,87 @@
+
+@model B2B_Deneme.ViewModels.VMMusteriler
 @{
     ViewData["Title"] = "Siparişler";
 
 }
-<div class="page-body-wrapper horizontal-menu">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header pb-0">
-                        <h5>Basic Scenario</h5><span>Grid with filtering, editing, inserting, deleting, sorting and paging. Data provided by controller.</span>
-                    </div>
-                    <div class="card-body">
-                        <div id="OrdersTable">
-                           
-                        </div>
+
+<div class="container-fluid list-products">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header pb-0">
+                    <h5>Siparişler</h5>
+                </div>
+                <div class="card-header pb-0 text-right">
+                    <a class="btn btn-primary" asp-controller="Order" asp-action="CreateOrder"><span>Teklif Oluştur</span></a>
+
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive product-table">
+                        <table class="display" id="basic-1">
+                            <thead>
+                                <tr>
+                                    <th>Sipariş No</th>
+                                    <th>Sipariş Tarihi</th>
+                                    <th>Teslim Tarihi</th>
+                                    <th>Sipariş Tutarı</th>
+                               
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.CariSipBilgileri !=null)
+                                {
+
+                                    @foreach (var Cari in Model.CariSipBilgileri)
+                                    {
+                                        <tr>
+
+                                            <th>@Cari["SipNo"]</th>
+                                            <td>@Cari["KTRH"]</td>
+                                            <td>@Cari["TESTRH"]</td>
+                                            <td>@Cari["SIPTUTAR"]</td>
+
+
+                                            @*  <td>
+                                    @if (User.IsPasivve == false)
+                                    {
+                                    <span class="badge bg-success text-white">Aktif</span>
+                                    }
+                                    else if (User.IsPasivve == true)
+                                    {
+                                    <span class="badge bg-danger text-white">Pasif</span>
+                                    }
+                                    </td>
+                                    <td>
+                                    @if (User.IsPasivve == false)
+                                    {
+                                    <form method="post" asp-controller="Users" asp-action="UserStatuUpdate">
+                                    <input type="hidden" name="userId" value="@User.UserId" />
+                                    <button type="submit" class="btn btn-danger btn-xs">Pasif Yap</button>
+                                    </form>
+                                    }
+                                    else if (User.IsPasivve == true)
+                                    {
+                                    <form method="post" asp-controller="Users" asp-action="UserStatuUpdate">
+                                    <input type="hidden" name="userId" value="@User.UserId" />
+                                    <button type="submit" class="btn btn-primary btn-xs">Aktif Yap</button>
+                                    </form>
+                                    }
+                                    </td> *@
+                                            <td>
+                                                <a @* href="/Users/UpdateUser/@User.UserId" *@><li data-feather="edit"></li></a>
+                                            <td>
+                                        </tr>
+                                    }
+
+
+                                }  </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
+
+

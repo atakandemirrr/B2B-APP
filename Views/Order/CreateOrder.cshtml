@@ -1,0 +1,167 @@
+﻿@model B2B_Deneme.ViewModels.VMMusteriler
+@{
+    ViewData["Title"] = "Sipariş Oluştur";
+
+}
+<div class="container-fluid list-products">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header pb-0">
+                    <h5>Sipariş Oluştur</h5>
+                </div>
+                <div class="card-header pb-0 text-right">
+                    <div class="mb-4">
+                    <div class="row">
+                        <div class="col-md-3">
+                                <label>Sipariş No : @Model.CariBilgileri.Rows[0]["Sip"]</label>
+                            </div>
+                        <div class="col-md-3">
+                        </div>
+                        <div class="col-md-6">
+                                <label>Müşteri Adı :  @Model.CariBilgileri.Rows[0]["Unvan"]</label>
+                            </div>
+                    </div>
+                    </div>
+                    <div class="mb-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mb-4 ui-draggable-handle" style="position: static;">
+                                <label for="formcontrol-select1">Ürün Seç</label>
+                                <select class="form-control btn-square" id="formcontrol-select1"></select>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                            <div class="col-md-2">
+                                            </div>
+                                        <div class="col-md-5">
+                                            <label>Birim Fiyat</label> <input class="form-control digits" disabled="disabled" type="number">
+                                        </div>
+                                        <div class="col-md-2    ">
+                                            
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>Adet</label>
+                                            <input class="form-control digits" type="number">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                          
+                                        </div>
+                                        <div class="col-md-4">
+                                                <label>Tutar</label><input class="form-control digits" disabled="disabled" type="number">
+                                        </div>
+                                        <div class="col-md-6">
+                                              
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                    </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-9">
+                         
+                        </div>
+            
+                        <div class="col-md-3">
+                            <button class="btn btn-primary" type="submit">Ekle</button>
+                        </div>
+                    </div>
+                </div>
+                    <div class="card-body">
+                        <div class="table-responsive product-table">
+                            <table class="display" id="basic-1">
+                                <thead>
+                                    <tr>
+                                        <th>UserId</th>
+                                        <th>Kayıt Tarihi</th>
+                                        <th>Adı</th>
+                                        <th>Soyadı</th>
+                                        <th>EMail</th>
+                                        <th>Paralo</th>
+                                        <th>Admin Mi</th>
+                                        <th>Durumu</th>
+                                        <th>Statü Değiştir</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @*  @foreach (var User in Model)
+                                    {
+                                    <tr>
+
+                                    <td>@User.UserId</td>
+                                    <td>@User.CreDate</td>
+                                    <td class="font-success">@User.Name</td>
+                                    <td>@User.Surname</td>
+                                    <td>@User.Email</td>
+                                    <td>@User.Password</td>
+                                    <td>
+                                    @if (User.IsAdmin == false)
+                                    {
+                                    <span class="badge bg-danger text-white">Hayır</span>
+                                    }
+                                    else if (User.IsAdmin == true)
+                                    {
+                                    <span class="badge bg-success text-white">Evet</span>
+                                    }
+                                    </td>
+                                    <td>
+                                    @if (User.IsPasivve == false)
+                                    {
+                                    <span class="badge bg-success text-white">Aktif</span>
+                                    }
+                                    else if (User.IsPasivve == true)
+                                    {
+                                    <span class="badge bg-danger text-white">Pasif</span>
+                                    }
+                                    </td>
+                                    <td>
+                                    @if (User.IsPasivve == false)
+                                    {
+                                    <form method="post" asp-controller="Users" asp-action="UserStatuUpdate">
+                                    <input type="hidden" name="userId" value="@User.UserId" />
+                                    <button type="submit" class="btn btn-danger btn-xs">Pasif Yap</button>
+                                    </form>
+                                    }
+                                    else if (User.IsPasivve == true)
+                                    {
+                                    <form method="post" asp-controller="Users" asp-action="UserStatuUpdate">
+                                    <input type="hidden" name="userId" value="@User.UserId" />
+                                    <button type="submit" class="btn btn-primary btn-xs">Aktif Yap</button>
+                                    <button type="submit" class="btn btn-primary btn-xs">Aktif Yap</button>
+                                    </form>
+                                    }
+                                    </td>
+                                    <td>
+                                    <a href="/Users/UpdateUser/@User.UserId"><li data-feather="edit"></li></a>
+                                    <td>
+                                    </tr>
+                                    } *@
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+

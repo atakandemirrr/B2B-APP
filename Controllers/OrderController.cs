@@ -17,9 +17,33 @@ namespace B2B_Deneme.Controllers
         [HttpGet]
         public IActionResult Orders()
         {
+            var email = User.Identity.Name;
 
 
-            return View();
+            VMMusteriler model = new VMMusteriler();
+
+            model.CariSipBilgileri = _context.CariSipBilgileri(email).AsEnumerable().ToList(); ;
+             return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult CreateOrder()
+        {
+            var email = User.Identity.Name;
+
+
+            VMMusteriler model = new VMMusteriler();
+
+            model.CariBilgileri = _context.CariBilgileri(email);
+            if(model.CariBilgileri.Rows.Count==0)
+            {
+
+                return RedirectToAction("Orders", "Order");
+               
+            }
+            return View(model);
+
+
         }
     }
 }
