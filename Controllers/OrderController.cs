@@ -37,19 +37,22 @@ namespace B2B_Deneme.Controllers
                 CariBilgileri = cariBilgileri,
                 Stoklar = stoklar
             };
-            //ViewBag.CariBilgileri = cariBilgileri;
-            //VMMusteriler model = new VMMusteriler();
-            //model.Stoklar = _context.Stok().AsEnumerable().ToList(); ;
-            //VMMusteriler model = new VMMusteriler();
 
-            //model.CariBilgileri = _context.CariBilgileri(email);
-            //if(model.CariBilgileri.Rows.Count==0)
-            //{
-
-            //    return RedirectToAction("Orders", "Order");
-
-            //}
             return View(model);
+
+
+        }
+
+        
+        public IActionResult EditOrder(string SipSira)
+        {
+           
+            var orders = _context.Orders.Where(x => x.SipSira.ToString() == SipSira).ToList();
+            if (orders.Count != 0)
+            {
+                return View(orders);
+            }
+            return RedirectToAction("Orders", "Order");
 
 
         }
@@ -57,6 +60,36 @@ namespace B2B_Deneme.Controllers
 
         [HttpPost]
         public IActionResult CreateOrder([FromBody] SiparisView model)
+        {
+            if (ModelState.IsValid)
+            {
+                var siparis = new Order
+                {
+                    StokKod = model.Stok,
+                    Price = model.BirimFiyat,
+                    Piece = model.Adet,
+                    Total = model.Toplam,
+                    CreDate = model.CreateDate,
+                    UpdateDate = model.UpdateDate,
+                    CariKod = model.CariKod,
+                    SipSira = model.SipSira,
+                    SipSeri = model.SipSeri,
+                    Statu = model.Statu
+                };
+
+                _context.Orders.Add(siparis);
+                _context.SaveChanges();
+
+                return Ok("İşlem başarıyla tamamlandı.");
+            }
+
+            return BadRequest("Geçersiz istek.");
+
+
+        }
+
+        [HttpPost]
+        public IActionResult DeleteOrder([FromBody] SiparisView model)
         {
             if (ModelState.IsValid)
             {

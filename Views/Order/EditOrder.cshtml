@@ -1,5 +1,5 @@
 ﻿@using System.Data
-@model B2B_Deneme.ViewModels.CreateOrder
+@model B2B_Deneme.Models.Order
 @{
     ViewData["Title"] = "Sipariş Oluştur";
 
@@ -13,8 +13,8 @@
                 <div class="card-header pb-0">
                     <h5>Sipariş Oluştur</h5>
                     <input id="CreDate" type="hidden" value="@DateTime.Today.ToString("yyyy-MM-dd")">
-                    <input id="CariKod" type="hidden" value="@Model.CariBilgileri.Rows[0]["CariKod"]">
-                    <input id="SipSira" type="hidden" value="@Model.CariBilgileri.Rows[0]["SipSira"]">
+                    <input id="CariKod" type="hidden" value="">
+                    <input id="SipSira" type="hidden" value="">
                     <input id="SipSeri" type="hidden" value="SİP">
                     <input id="Statu" type="hidden" value="0">
                 </div>
@@ -22,12 +22,12 @@
                     <div class="mb-4">
                         <div class="row">
                             <div class="col-md-3">
-                                <label>Sipariş No : @Model.CariBilgileri.Rows[0]["Sip"]</label>
+                                <label>Sipariş No : </label>
                             </div>
                             <div class="col-md-4">
                             </div>
                             <div class="col-md-5">
-                                <label>Müşteri Adı :  @Model.CariBilgileri.Rows[0]["Unvan"]</label>
+                                <label>Müşteri Adı :  </label>
                             </div>
                         </div>
                     </div>
@@ -38,10 +38,7 @@
                                     <label for="formcontrol-select1">Ürün Seç</label>
                                     <select id="stockSelect" class="form-control btn-square">
                                         <option value="">Seçiniz..</option>
-                                        @foreach (DataRow stok in Model.Stoklar.Rows)
-                                        {
-                                            <option value="@stok["sto_kod"].ToString()">@stok["sto_isim"]</option>
-                                        }
+                                    
                                     </select>
                                 </div>
                             </div>
@@ -66,11 +63,7 @@
 
                     <div class="row">
                         <div class="col-md-11">
-                            @*             <form action="@Url.Action("ProductSelection", "Order")" method="post">
-                            <input type="hidden" name="StokKod" value="01.01.18.00077" />
-                            <button onclick="getStockPrice()">test</button>
-                            </form> *@
-                        </div>
+                       </div>
 
                         <div class="col-md-1">
                             <button id="ekle" readonly class="btn btn-primary">Ekle</button>
@@ -83,12 +76,14 @@
                             <tr>
                                 <th>Ürün</th>
                                 <th>Sipariş Adeti</th>
-                                <th>Birim</th>
+                                <th>Birim Fiyatı</th>
                                 <th>Toplam</th>
 
                             </tr>
                         </thead>
                         <tbody>
+                         
+                  
                         </tbody>
                     </table>
                 </div>
@@ -96,6 +91,8 @@
         </div>
     </div>
 </div>
+
+
 <script>
     // Sil düğmelerini seç
     const silButtons = document.querySelectorAll(".silButton");
