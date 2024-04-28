@@ -55,7 +55,7 @@ namespace B2B_Deneme.Models
             using (SqlConnection connection = new SqlConnection(GetConnectionString()))
             {
                 connection.Open();
-                SqlCommand command = new SqlCommand("SELECT  C.cari_unvan1 as Unvan, CONCAT('SİP','-',ISNULL(MAX(O.SipSira),0)+1) as Sip  FROM dbo.CARI_HESAPLAR C LEFT JOIN  [B2BAPP].[dbo].[Orders] O ON   C.cari_kod = O.CariKod COLLATE Turkish_CI_AS WHERE C.cari_EMail = '"+ Mail + "'  GROUP BY  C.cari_unvan1", connection);
+                SqlCommand command = new SqlCommand("SELECT  C.cari_unvan1 as Unvan, CONCAT('SİP','-',ISNULL(MAX(O.SipSira),0)+1) as Sip,C.cari_kod as CariKod,ISNULL(MAX(O.SipSira),0)+1 as SipSira  FROM dbo.CARI_HESAPLAR C LEFT JOIN  [B2BAPP].[dbo].[Orders] O ON   C.cari_kod = O.CariKod COLLATE Turkish_CI_AS WHERE C.cari_EMail = '" + Mail + "'  GROUP BY  C.cari_unvan1,C.cari_kod", connection);
                 SqlDataAdapter adapter = new SqlDataAdapter(command);
                 DataTable dataTable = new DataTable();
                 adapter.Fill(dataTable);

@@ -13,7 +13,7 @@ namespace B2B_Deneme.Models
         public DateTime UpdateDate { get; set; }
         public string SipSeri { get; set; }
         public int SipSira { get; set; }
-        public int RowNumber { get; set; }
+
 
         [Required]
         [MaxLength(25)]

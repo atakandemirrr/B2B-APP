@@ -54,7 +54,40 @@ namespace B2B_Deneme.Controllers
 
         }
 
-       public IActionResult ProductSelection(string stockCode)
+
+        [HttpPost]
+        public IActionResult CreateOrder([FromBody] SiparisView model)
+        {
+            if (ModelState.IsValid)
+            {
+                var siparis = new Order
+                {
+                    StokKod = model.Stok,
+                    Price = model.BirimFiyat,
+                    Piece = model.Adet,
+                    Total = model.Toplam,
+                    CreDate = model.CreateDate,
+                    UpdateDate = model.UpdateDate,
+                    CariKod = model.CariKod,
+                    SipSira = model.SipSira,
+                    SipSeri = model.SipSeri,
+                    Statu = model.Statu
+                };
+
+                _context.Orders.Add(siparis);
+                _context.SaveChanges();
+
+                return Ok("İşlem başarıyla tamamlandı.");
+            }
+
+            return BadRequest("Geçersiz istek.");
+
+
+        }
+
+
+
+        public IActionResult ProductSelection(string stockCode)
         {
             var stoklar = _context.Stok().AsEnumerable().ToList(); ;
             var selectedRow = stoklar.FirstOrDefault(row => row["sto_kod"].ToString() == stockCode);

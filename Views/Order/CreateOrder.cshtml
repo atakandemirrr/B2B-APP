@@ -12,6 +12,11 @@
             <div class="card">
                 <div class="card-header pb-0">
                     <h5>Sipariş Oluştur</h5>
+                    <input id="CreDate" type="hidden" value="@DateTime.Today.ToString("yyyy-MM-dd")">
+                    <input id="CariKod" type="hidden" value="@Model.CariBilgileri.Rows[0]["CariKod"]">
+                    <input id="SipSira" type="hidden" value="@Model.CariBilgileri.Rows[0]["SipSira"]">
+                    <input id="SipSeri" type="hidden" value="SİP">
+                    <input id="Statu" type="hidden" value="0">
                 </div>
                 <div class="card-header pb-0 text-right">
                     <div class="mb-4">
@@ -49,12 +54,12 @@
                             </div>
                             <div class="col-md-2">
                                 <label>Adet</label>
-                                <input class="form-control digits" type="number">
+                                <input id="quantity" class="form-control digits" type="number">
                             </div>
                             <div class="col-md-1">
                             </div>
                             <div class="col-md-2">
-                                <label>Tutar</label><input class="form-control digits" disabled="disabled" type="number">
+                                <label>Tutar</label><input id="total" class="form-control digits" disabled="disabled" type="number">
                             </div>
                         </div>
                     </div>
@@ -68,88 +73,28 @@
                         </div>
 
                         <div class="col-md-1">
-                            <button class="btn btn-primary" asp-controller="Order" asp-action="ProductSelection">Ekle</button>
+                            <button id="ekle" readonly class="btn btn-primary">Ekle</button>
                         </div>
                     </div>
                 </div>
-                <div class="card-body">
-                    <div class="table-responsive product-table">
-                        <table class="display" id="basic-1">
-                            <thead>
-                                <tr>
-                                    <th>UserId</th>
-                                    <th>Kayıt Tarihi</th>
-                                    <th>Adı</th>
-                                    <th>Soyadı</th>
-                                    <th>EMail</th>
-                                    <th>Paralo</th>
-                                    <th>Admin Mi</th>
-                                    <th>Durumu</th>
-                                    <th>Statü Değiştir</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @*  @foreach (var User in Model)
-                                {
-                                <tr>
+                <div class="table-responsive">
+                    <table class="table table-hover" id="SipTable">
+                        <thead>
+                            <tr>
+                                <th>Ürün</th>
+                                <th>Sipariş Adeti</th>
+                                <th>Birim</th>
+                                <th>Toplam</th>
 
-                                <td>@User.UserId</td>
-                                <td>@User.CreDate</td>
-                                <td class="font-success">@User.Name</td>
-                                <td>@User.Surname</td>
-                                <td>@User.Email</td>
-                                <td>@User.Password</td>
-                                <td>
-                                @if (User.IsAdmin == false)
-                                {
-                                <span class="badge bg-danger text-white">Hayır</span>
-                                }
-                                else if (User.IsAdmin == true)
-                                {
-                                <span class="badge bg-success text-white">Evet</span>
-                                }
-                                </td>
-                                <td>
-                                @if (User.IsPasivve == false)
-                                {
-                                <span class="badge bg-success text-white">Aktif</span>
-                                }
-                                else if (User.IsPasivve == true)
-                                {
-                                <span class="badge bg-danger text-white">Pasif</span>
-                                }
-                                </td>
-                                <td>
-                                @if (User.IsPasivve == false)
-                                {
-                                <form method="post" asp-controller="Users" asp-action="UserStatuUpdate">
-                                <input type="hidden" name="userId" value="@User.UserId" />
-                                <button type="submit" class="btn btn-danger btn-xs">Pasif Yap</button>
-                                </form>
-                                }
-                                else if (User.IsPasivve == true)
-                                {
-                                <form method="post" asp-controller="Users" asp-action="UserStatuUpdate">
-                                <input type="hidden" name="userId" value="@User.UserId" />
-                                <button type="submit" class="btn btn-primary btn-xs">Aktif Yap</button>
-                                <button type="submit" class="btn btn-primary btn-xs">Aktif Yap</button>
-                                </form>
-                                }
-                                </td>
-                                <td>
-                                <a href="/Users/UpdateUser/@User.UserId"><li data-feather="edit"></li></a>
-                                <td>
-                                </tr>
-                                } *@
-                            </tbody>
-                        </table>
-                    </div>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
 
 
