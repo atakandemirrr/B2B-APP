@@ -456,3 +456,10 @@ function EnableButtons(classname) {
     }
 }
 /*Buttonları kullanım dışı bırakıp aktif etmek için*/
+
+
+
+
+
+
+

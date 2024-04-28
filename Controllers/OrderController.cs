@@ -30,18 +30,51 @@ namespace B2B_Deneme.Controllers
         public IActionResult CreateOrder()
         {
             var email = User.Identity.Name;
-
-
-            VMMusteriler model = new VMMusteriler();
-
-            model.CariBilgileri = _context.CariBilgileri(email);
-            if(model.CariBilgileri.Rows.Count==0)
+            var cariBilgileri = _context.CariBilgileri(email);
+            var stoklar = _context.Stok();
+            var model = new CreateOrder
             {
+                CariBilgileri = cariBilgileri,
+                Stoklar = stoklar
+            };
+            //ViewBag.CariBilgileri = cariBilgileri;
+            //VMMusteriler model = new VMMusteriler();
+            //model.Stoklar = _context.Stok().AsEnumerable().ToList(); ;
+            //VMMusteriler model = new VMMusteriler();
 
-                return RedirectToAction("Orders", "Order");
-               
-            }
+            //model.CariBilgileri = _context.CariBilgileri(email);
+            //if(model.CariBilgileri.Rows.Count==0)
+            //{
+
+            //    return RedirectToAction("Orders", "Order");
+
+            //}
             return View(model);
+
+
+        }
+
+       public IActionResult ProductSelection(string stockCode)
+        {
+            var stoklar = _context.Stok().AsEnumerable().ToList(); ;
+            var selectedRow = stoklar.FirstOrDefault(row => row["sto_kod"].ToString() == stockCode);
+            if (selectedRow != null)
+            {
+             
+              
+
+                decimal fiyat = Convert.ToDecimal(selectedRow["sfiyat_fiyati"]);
+
+      
+                return Json(fiyat);
+            }
+            else
+            {
+                decimal fiyat = 0;
+                return Json(fiyat);
+            }
+
+
 
 
         }
