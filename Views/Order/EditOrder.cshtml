@@ -100,36 +100,6 @@
         </div>
     </div>
 </div>
-DOMContentLoaded
-<script>
-    // Sayfa yüklendiğinde çalışacak olan fonksiyon aaa
-    window.onload = function () {
-        // AJAX isteği gönderme
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", "/Stoklar/EditOrderDropdown", true);
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                // Sunucudan gelen JSON yanıtını al
-                var stocks = JSON.parse(xhr.responseText);
-                // Açılır kutuyu doldurma
-                fillDropDown(stocks);
-            }
-        };
-        xhr.send();
-    };
-
-    // Açılır kutuyu doldurma fonksiyonu
-    function fillDropDown(stocks) {
-        var select = document.getElementById("stockSelect");
-        // Her bir stok için açılır kutuya bir seçenek ekle
-        stocks.forEach(function (stock) {
-            var option = document.createElement("option");
-            option.value = stock.sto_kod;
-            option.text = stock.sto_isim;
-            select.appendChild(option);
-        });
-    }
-</script>
 
 
 @*

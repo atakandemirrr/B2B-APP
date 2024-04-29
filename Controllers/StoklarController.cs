@@ -31,11 +31,19 @@ namespace B2B_Deneme.Controllers
         [HttpGet]
         public IActionResult EditOrderDropdown()
         {
-            VMMusteriler model = new VMMusteriler();
+            List<object> stokListesi = new List<object>();
 
-            model.Stoklar = _context.Stok().AsEnumerable().ToList();
+            foreach (DataRow row in _context.Stok().Rows)
+            {
+                string stokKod = row["sto_kod"].ToString();
+                string stokAd = row["sto_isim"].ToString();
 
-            return View(model);
+                var stok = new { StokKodu = stokKod, StokAdi = stokAd };
+                stokListesi.Add(stok);
+            }
+
+            return Json(stokListesi);
+
         }
     }
 }

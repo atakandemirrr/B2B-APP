@@ -25,7 +25,7 @@ $(document).ready(function () {
     $("#quantity").on("input", function () {
         calculateTotal();
     });
-        
+
     function calculateTotal() {
 
         var quantity = parseFloat($("#quantity").val());
@@ -45,7 +45,7 @@ $(document).ready(function () {
 
 //ekle butonuna tılayınca çalışan işlemler veritabanına kayıt işlemi yapılıyor.
 $(document).ready(function () {
-   /* const ekle = document.querySelector("#ekle");*/
+    /* const ekle = document.querySelector("#ekle");*/
     const liste = document.querySelector("#SipTable");
 
     ekle.onclick = function () {
@@ -96,6 +96,33 @@ $(document).ready(function () {
 
     }
 });
+
+$(document).ready(function () {
+    // AJAX isteği gönderme
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "/Stoklar/EditOrderDropdown", true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            // Sunucudan gelen JSON yanıtını al
+            var stocks = JSON.parse(xhr.responseText);
+            console.log(stocks);
+            // Açılır kutuyu doldurma
+            fillDropDown(stocks);
+        }
+    };
+    xhr.send();
+});
+
+// Açılır kutuyu doldurma fonksiyonu
+function fillDropDown(stocks) {
+    var select = $("#stockSelect");
+    // Her bir stok için açılır kutuya bir seçenek ekle
+    stocks.forEach(function (stock) {
+        select.append("<option value='" + stock.stokKodu + "'>" + stock.stokAdi + "</option>");
+    });
+}
+
+
 
 ////sil butonuna tılayınca çalışan işlemler veritabanındam silme işlemi yapılıyor.
 //$(document).ready(function () {

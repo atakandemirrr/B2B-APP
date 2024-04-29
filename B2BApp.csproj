@@ -9,9 +9,13 @@
 
   <ItemGroup>
     <Compile Remove="Views\SubPage\**" />
+    <Compile Remove="wwwroot\js\NewFolder\**" />
     <Content Remove="Views\SubPage\**" />
+    <Content Remove="wwwroot\js\NewFolder\**" />
     <EmbeddedResource Remove="Views\SubPage\**" />
+    <EmbeddedResource Remove="wwwroot\js\NewFolder\**" />
     <None Remove="Views\SubPage\**" />
+    <None Remove="wwwroot\js\NewFolder\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,7 +37,6 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
-    <Folder Include="wwwroot\js\NewFolder\" />
   </ItemGroup>
 
 </Project>
