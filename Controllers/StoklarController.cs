@@ -27,5 +27,15 @@ namespace B2B_Deneme.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        public IActionResult EditOrderDropdown()
+        {
+            VMMusteriler model = new VMMusteriler();
+
+            model.Stoklar = _context.Stok().AsEnumerable().ToList();
+
+            return View(model);
+        }
     }
 }

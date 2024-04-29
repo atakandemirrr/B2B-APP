@@ -1,10 +1,12 @@
 ﻿using B2B_Deneme.Models;
 using B2B_Deneme.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 
 namespace B2B_Deneme.Controllers
 {
+    [Authorize]
 
     public class OrderController : Controller
     {
@@ -31,19 +33,24 @@ namespace B2B_Deneme.Controllers
         {
             var email = User.Identity.Name;
             var cariBilgileri = _context.CariBilgileri(email);
-            var stoklar = _context.Stok();
-            var model = new CreateOrder
+            if (cariBilgileri.Rows.Count != 0)
             {
-                CariBilgileri = cariBilgileri,
-                Stoklar = stoklar
-            };
+                var stoklar = _context.Stok();
+                var model = new CreateOrder
+                {
+                    CariBilgileri = cariBilgileri,
+                    Stoklar = stoklar
+                };
 
-            return View(model);
+                return View(model);
+            }
+
+            return RedirectToAction("Orders", "Order");
 
 
         }
 
-        
+        [HttpGet]
         public IActionResult EditOrder(string SipSira)
         {
            

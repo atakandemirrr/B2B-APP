@@ -13,7 +13,7 @@
                     <h5>Siparişler</h5>
                 </div>
                 <div class="card-header pb-0 text-right">
-                    <a class="btn btn-primary" asp-controller="Order" asp-action="CreateOrder"><span>Sipariş Oluştur</span></a>
+                    <a class="btn btn-primary" asp-controller="Order" asp-action="CreateOrder" ><span>Sipariş Oluştur</span></a>
 
                 </div>
                 <div class="card-body">
@@ -25,6 +25,7 @@
                                     <th>Sipariş Tarihi</th>
                                     <th>Teslim Tarihi</th>
                                     <th>Sipariş Tutarı</th>
+                                    <th>Sipariş Sira</th>
                                     <th>Düzenle</th>
                                
                                 </tr>
@@ -41,8 +42,15 @@
                                             <td>@Cari["KTRH"]</td>
                                             <td>@Cari["TESTRH"]</td>
                                             <td>@Cari["SIPTUTAR"]</td>
+                                            <td>@Cari["SIPTUTAR"]</td>
                                             <td>
-                                                <a href="/Order/EditOrder/@Cari["SipSira"]"><li data-feather="edit"></li></a>
+                                             @*  <a href="/Order/EditOrder/@Cari["SipSira"]"><li data-feather="edit"></li></a>  *@
+                                                <form asp-controller="Order" asp-action="EditOrder" method="get">
+                                                    <input type="hidden" name="SipSira" value="@Cari["SipSira"]" />
+                                                    <button type="submit" class="btn btn-primary btn-xs" >Edit</button>
+                                                </form>
+
+                                          
                                             <td>
                                         </tr>
                                     }

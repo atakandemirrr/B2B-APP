@@ -1,5 +1,5 @@
 ﻿@using System.Data
-@model B2B_Deneme.Models.Order
+@model IEnumerable<B2B_Deneme.Models.Order>
 @{
     ViewData["Title"] = "Sipariş Oluştur";
 
@@ -13,21 +13,21 @@
                 <div class="card-header pb-0">
                     <h5>Sipariş Oluştur</h5>
                     <input id="CreDate" type="hidden" value="@DateTime.Today.ToString("yyyy-MM-dd")">
-                    <input id="CariKod" type="hidden" value="">
-                    <input id="SipSira" type="hidden" value="">
-                    <input id="SipSeri" type="hidden" value="SİP">
+                    <input id="CariKod" type="hidden" value="@Model.FirstOrDefault()?.CariKod">
+                    <input id="SipSira" type="hidden" value="@Model.FirstOrDefault()?.SipSira">
+                    <input id="SipSeri" type="hidden" value="@Model.FirstOrDefault()?.SipSeri">
                     <input id="Statu" type="hidden" value="0">
                 </div>
                 <div class="card-header pb-0 text-right">
                     <div class="mb-4">
                         <div class="row">
                             <div class="col-md-3">
-                                <label>Sipariş No : </label>
+                                <label>Sipariş No : @Model.FirstOrDefault()?.SipSeri - @Model.FirstOrDefault()?.SipSira</label>
                             </div>
                             <div class="col-md-4">
                             </div>
                             <div class="col-md-5">
-                                <label>Müşteri Adı :  </label>
+                                <label>Müşteri Adı : @Model.FirstOrDefault()?.CariKod </label>
                             </div>
                         </div>
                     </div>
@@ -38,7 +38,6 @@
                                     <label for="formcontrol-select1">Ürün Seç</label>
                                     <select id="stockSelect" class="form-control btn-square">
                                         <option value="">Seçiniz..</option>
-                                    
                                     </select>
                                 </div>
                             </div>
@@ -63,7 +62,7 @@
 
                     <div class="row">
                         <div class="col-md-11">
-                       </div>
+                        </div>
 
                         <div class="col-md-1">
                             <button id="ekle" readonly class="btn btn-primary">Ekle</button>
@@ -82,8 +81,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                         
-                  
+                            @foreach (var order in Model)
+                            {
+                                <tr>
+                                    <th>@order.StokKod</th>
+                                    <th>@order.Piece</th>
+                                    <th>@order.Price</th>
+                                    <th>@order.Total</th>
+
+                                </tr>
+
+                            }
+
                         </tbody>
                     </table>
                 </div>
@@ -91,8 +100,39 @@
         </div>
     </div>
 </div>
+DOMContentLoaded
+<script>
+    // Sayfa yüklendiğinde çalışacak olan fonksiyon
+    window.onload = function () {
+        // AJAX isteği gönderme
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "/Stoklar/EditOrderDropdown", true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // Sunucudan gelen JSON yanıtını al
+                var stocks = JSON.parse(xhr.responseText);
+                // Açılır kutuyu doldurma
+                fillDropDown(stocks);
+            }
+        };
+        xhr.send();
+    };
+
+    // Açılır kutuyu doldurma fonksiyonu
+    function fillDropDown(stocks) {
+        var select = document.getElementById("stockSelect");
+        // Her bir stok için açılır kutuya bir seçenek ekle
+        stocks.forEach(function (stock) {
+            var option = document.createElement("option");
+            option.value = stock.sto_kod;
+            option.text = stock.sto_isim;
+            select.appendChild(option);
+        });
+    }
+</script>
 
 
+@*
 <script>
     // Sil düğmelerini seç
     const silButtons = document.querySelectorAll(".silButton");
@@ -120,3 +160,4 @@
 </script>
 
 
+ *@
