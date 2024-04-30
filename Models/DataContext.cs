@@ -68,7 +68,7 @@ namespace B2B_Deneme.Models
             using (SqlConnection connection = new SqlConnection(GetConnectionString()))
             {
                 connection.Open();  
-                SqlCommand command = new SqlCommand("SELECT O.Statu as Statu, CONCAT('SİP', '-', O.SipSira) as SipNo,O.SipSira as SipSira,O.CreDate KTRH,O.CreDate TESTRH,SUM(O.Total) SIPTUTAR FROM [B2BAPP].[dbo].[Orders] O LEFT JOIN  dbo.CARI_HESAPLAR C  ON   C.cari_kod = O.CariKod COLLATE Turkish_CI_AS WHERE C.cari_EMail = '" + Mail + "' GROUP BY O.SipSeri, O.SipSira, O.CreDate,O.Statu", connection);
+                SqlCommand command = new SqlCommand("SELECT O.Statu as Statu, CONCAT('SİP', '-', O.SipSira) as SipNo,O.SipSira as SipSira,O.OrderDate KTRH,O.DeliveryDate TESTRH,SUM(O.Total) SIPTUTAR FROM [B2BAPP].[dbo].[Orders] O LEFT JOIN  dbo.CARI_HESAPLAR C  ON   C.cari_kod = O.CariKod COLLATE Turkish_CI_AS WHERE C.cari_EMail = '" + Mail + "' GROUP BY O.SipSeri, O.SipSira,O.DeliveryDate,O.OrderDate,O.Statu", connection);
                 SqlDataAdapter adapter = new SqlDataAdapter(command);
                 DataTable dataTable = new DataTable();
                 adapter.Fill(dataTable);

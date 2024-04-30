@@ -11,8 +11,8 @@ namespace B2B_Deneme.Models
 
         public DateTime CreDate { get; set; }
         public DateTime UpdateDate { get; set; }
-        public DateTime OrderDate { get; set; }
-        public DateTime DeliveryDate { get; set; }
+        public string OrderDate { get; set; }
+        public string DeliveryDate { get; set; }
         public string SipSeri { get; set; }
         public int SipSira { get; set; }
 

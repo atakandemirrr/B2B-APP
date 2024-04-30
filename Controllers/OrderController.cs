@@ -3,6 +3,7 @@ using B2B_Deneme.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
+using System.Globalization;
 
 namespace B2B_Deneme.Controllers
 {
@@ -81,8 +82,11 @@ namespace B2B_Deneme.Controllers
                     CariKod = model.CariKod,
                     SipSira = model.SipSira,
                     SipSeri = model.SipSeri,
-                    Statu = model.Statu
+                    Statu = model.Statu,
+                    OrderDate = model.OrderDate,
+                    DeliveryDate = model.DeliveryDate
                 };
+                
 
                 _context.Orders.Add(siparis);
                 _context.SaveChanges();

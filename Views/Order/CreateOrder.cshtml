@@ -43,13 +43,13 @@
                         </div>
                     </div>
                     <div class="mb-4">
-                        <div class="col-xl-6 xl-100 xl-mt-job">
+                      
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="col-sm-6">
                                         <label class="col-form-label text-end pt-0">Sipariş Tarihi</label>
                                         <div class="input-group">
-                                            <input class="datepicker-here form-control digits" type="text" data-language="tr">
+                                            <input id="SipTrh" class="datepicker-here form-control digits" type="datetime" data-language="tr">
                                         </div>
                                     </div>
                                 </div>
@@ -59,14 +59,14 @@
                                     <div class="col-sm-6 xs-mt-period">
                                         <label class="col-form-label text-end pt-0">Teslim Tarihi</label>
                                         <div class="input-group">
-                                            <input class="datepicker-here form-control digits" type="text" data-language="tr">
+                                        <input id="TesTrh" class="datepicker-here form-control digits" type="datetime" data-language="tr">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-5">
                                 </div>
                             </div>
-                        </div>
+                      
                     </div>
 
                     <div class="mb-4">
@@ -103,14 +103,14 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-11">
+                        <div class="col-md-10">
                             @*             <form action="@Url.Action("ProductSelection", "Order")" method="post">
                             <input type="hidden" name="StokKod" value="01.01.18.00077" />
                             <button onclick="getStockPrice()">test</button>
                             </form> *@
                         </div>
 
-                        <div class="col-md-1">
+                        <div class="col-md-2">
                             <button id="ekle" readonly class="btn btn-primary">Ekle</button>
                         </div>
                     </div>

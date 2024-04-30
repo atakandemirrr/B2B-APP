@@ -60,6 +60,8 @@ function EkleIslemleri() {
     var SipSira = $("#SipSira").val();
     var SipSeri = $("#SipSeri").val();
     var Statu = $("#Statu").val();
+    var SipTrh = $("#SipTrh").val();
+    var TesTrh = $("#TesTrh").val();
 
     var data = {
         stok: stokSelect,
@@ -68,11 +70,15 @@ function EkleIslemleri() {
         toplam: toplam,
         CreateDate: CreateDate,
         UpdateDate: UpdateDate,
+        OrderDate: SipTrh,
+        DeliveryDate: TesTrh,
         CariKod: CariKod,
         SipSira: SipSira,
         SipSeri: SipSeri,
         Statu: Statu
+       
     };
+        
 
     $.ajax({
         type: "POST",
