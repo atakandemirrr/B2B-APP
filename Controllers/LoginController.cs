@@ -6,6 +6,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Data;
+using Microsoft.EntityFrameworkCore;
 
 
 
@@ -29,32 +30,100 @@ namespace B2B_Deneme.Controllers
             return View();
         }
 
+        //[AllowAnonymous]
+        //[HttpPost]
+        //public async Task<IActionResult> LoginPage(User p)
+        //{
+
+        //    var data = _context.Users.FirstOrDefault(x => x.Email == p.Email && x.Password == p.Password && x.IsPasivve==false);
+        //    if (data != null)
+        //    {
+
+        //        var claims = new List<Claim>
+        //        {
+        //            new Claim(ClaimTypes.Name, p.Email)
+        //        };
+        //        var userIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+        //        var principal = new AuthenticationProperties
+        //        {
+
+        //            IsPersistent = true,
+        //            ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(20)
+        //        };
+
+        //        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(userIdentity), principal);
+        //        return RedirectToAction("Index", "Home");
+
+        //    }
+        //    return View();
+        //}
         [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> LoginPage(User p)
         {
-
-            var data = _context.Users.FirstOrDefault(x => x.Email == p.Email && x.Password == p.Password && x.IsPasivve==false);
-            if (data != null)
+            if (p.Email == "admin@gmail.com" && p.Password == "Admin2024")
             {
+                // İlk Veritabanı oluşturma, B2BAPP veritabanını kontrol et
+                var databaseExists = _context.Database.GetDbConnection().State != ConnectionState.Closed;
 
-                var claims = new List<Claim>
+                if (!databaseExists)
+                {
+                    // B2BAPP veritabanı yok, oluştur
+                    _context.Database.EnsureCreated();
+                    // Tabloları oluşturmak için gerekli işlemleri yap
+                    // Örnek: _context.Database.Migrate() kullanarak mevcut migration'ları uygulayabilirsiniz.
+
+                    // Şimdi tekrar kullanıcıyı kontrol et
+
+
+                    if (p.Email == "admin@gmail.com" && p.Password == "Admin2024")
+                    {
+                        // Kullanıcı bulundu, oturum açma işlemini gerçekleştir
+                        var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, p.Email)
                 };
-                var userIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                var principal = new AuthenticationProperties
+                        var userIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                        var principal = new AuthenticationProperties
+                        {
+                            IsPersistent = true,
+                            ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(20)
+                        };
+
+                        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(userIdentity), principal);
+                        return RedirectToAction("Index", "Home");
+                    }
+
+                }
+            }
+            else
+            {
+                var data = _context.Users.FirstOrDefault(x => x.Email == p.Email && x.Password == p.Password && x.IsPasivve == false);
+                if (data != null)
                 {
 
-                    IsPersistent = true,
-                    ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(20)
-                };
+                    var claims = new List<Claim>
+                        {
+                            new Claim(ClaimTypes.Name, p.Email)
+                        };
+                    var userIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    var principal = new AuthenticationProperties
+                    {
 
-                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(userIdentity), principal);
-                return RedirectToAction("Index", "Home");
+                        IsPersistent = true,
+                        ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(20)
+                    };
 
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(userIdentity), principal);
+                    return RedirectToAction("Index", "Home");
+
+                }
+                return View();
             }
+
             return View();
+
+
         }
 
 
