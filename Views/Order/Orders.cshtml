@@ -1,8 +1,10 @@
-
 @model B2B_Deneme.ViewModels.VMMusteriler
 @{
     ViewData["Title"] = "Siparişler";
 
+}
+@section Scripts {
+    <script src="~/js/forcreateorder/formoperations.js"></script>
 }
 
 <div class="container-fluid list-products">
@@ -13,7 +15,7 @@
                     <h5>Siparişler</h5>
                 </div>
                 <div class="card-header pb-0 text-right">
-                    <a class="btn btn-primary" asp-controller="Order" asp-action="CreateOrder" ><span>Sipariş Oluştur</span></a>
+                    <a class="btn btn-primary" asp-controller="Order" asp-action="CreateOrder"><span>Sipariş Oluştur</span></a>
 
                 </div>
                 <div class="card-body">
@@ -25,13 +27,12 @@
                                     <th>Sipariş Tarihi</th>
                                     <th>Teslim Tarihi</th>
                                     <th>Sipariş Tutarı</th>
-                                    <th>Sipariş Sira</th>
                                     <th>Düzenle</th>
-                               
+
                                 </tr>
                             </thead>
                             <tbody>
-                                @if (Model.CariSipBilgileri !=null)
+                                @if (Model.CariSipBilgileri != null)
                                 {
 
                                     @foreach (var Cari in Model.CariSipBilgileri)
@@ -42,21 +43,39 @@
                                             <td>@Cari["KTRH"]</td>
                                             <td>@Cari["TESTRH"]</td>
                                             <td>@Cari["SIPTUTAR"]</td>
-                                            <td>@Cari["SIPTUTAR"]</td>
                                             <td>
-                                             @*  <a href="/Order/EditOrder/@Cari["SipSira"]"><li data-feather="edit"></li></a>  *@
+                                                @switch (Convert.ToInt32(@Cari["Statu"]))
+                                                {
+                                                    case 0:
+                                                        <span class="badge bg-danger text-white">Hazırlandı</span>
+                                                        break;
+                                                    case 1:
+                                                        <span class="badge bg-success text-white">Beklemede</span>
+                                                        break;
+                                                    case 2:
+                                                        <span class="badge bg-success text-white">Onaylandı</span>
+                                                        break;
+                                                    case 3:
+                                                        <span class="badge bg-success text-white">Red</span>
+                                                        break;
+                                                    default:
+                                                        // Statu bilinmeyen bir değere sahipse, burası çalışır.
+                                                        break;
+                                                }
+                                            </td>
+                                            <td>
+                                                @*  <a href="/Order/EditOrder/@Cari["SipSira"]"><li data-feather="edit"></li></a>  *@
                                                 <form asp-controller="Order" asp-action="EditOrder" method="get">
                                                     <input type="hidden" name="SipSira" value="@Cari["SipSira"]" />
-                                                    <button type="submit" class="btn btn-primary btn-xs" >Edit</button>
+                                                    <button type="submit" class="btn btn-primary btn-xs">Edit</button>
                                                 </form>
-
-                                          
                                             <td>
+                                           
+
                                         </tr>
                                     }
-
-
-                                }  </tbody>
+                                }
+                            </tbody>
                         </table>
                     </div>
                 </div>

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace B2B_Deneme.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240426200600_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240430134534_AA")]
+    partial class AA
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -76,14 +76,17 @@ namespace B2B_Deneme.Migrations
                     b.Property<DateTime>("CreDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("DeliveryDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("Piece")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("RowNumber")
-                        .HasColumnType("int");
 
                     b.Property<string>("SipSeri")
                         .IsRequired()

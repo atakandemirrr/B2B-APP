@@ -11,6 +11,8 @@ namespace B2B_Deneme.Models
 
         public DateTime CreDate { get; set; }
         public DateTime UpdateDate { get; set; }
+        public DateTime OrderDate { get; set; }
+        public DateTime DeliveryDate { get; set; }
         public string SipSeri { get; set; }
         public int SipSira { get; set; }
 
@@ -22,7 +24,7 @@ namespace B2B_Deneme.Models
         public int Piece { get; set; }
         public decimal Price { get; set; }
         public decimal Total { get; set; }
-        public int Statu { get; set; }/*0 beklemede 1 onaylandı 2 rededildi*/
+        public int Statu { get; set; }/*0 hazırlandı 1 onayda 2 onaylandı 3 rededildi*/
       
     }
 }

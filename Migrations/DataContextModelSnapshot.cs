@@ -74,14 +74,17 @@ namespace B2B_Deneme.Migrations
                     b.Property<DateTime>("CreDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("DeliveryDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("Piece")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("RowNumber")
-                        .HasColumnType("int");
 
                     b.Property<string>("SipSeri")
                         .IsRequired()

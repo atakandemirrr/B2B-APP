@@ -66,7 +66,7 @@ namespace B2B_Deneme.Controllers
 
 
         [HttpPost]
-        public IActionResult CreateOrder([FromBody] SiparisView model)
+        public int CreateOrder([FromBody] SiparisView model)
         {
             if (ModelState.IsValid)
             {
@@ -87,43 +87,53 @@ namespace B2B_Deneme.Controllers
                 _context.Orders.Add(siparis);
                 _context.SaveChanges();
 
-                return Ok("İşlem başarıyla tamamlandı.");
+                // Eklenen son kaydın UserTableId değerini almak için:
+                var sonEklenenSiparis = _context.Orders.OrderByDescending(o => o.UserTableId).FirstOrDefault(o => o.SipSeri == model.SipSeri && o.SipSira == model.SipSira);
+                int userTableId = sonEklenenSiparis.UserTableId;
+
+                return userTableId;
+
             }
-
-            return BadRequest("Geçersiz istek.");
-
+            return 0;
 
         }
 
         [HttpPost]
-        public IActionResult DeleteOrder([FromBody] SiparisView model)
+        public IActionResult DeleteOrder(int UserTableID)
         {
-            if (ModelState.IsValid)
-            {
-                var siparis = new Order
-                {
-                    StokKod = model.Stok,
-                    Price = model.BirimFiyat,
-                    Piece = model.Adet,
-                    Total = model.Toplam,
-                    CreDate = model.CreateDate,
-                    UpdateDate = model.UpdateDate,
-                    CariKod = model.CariKod,
-                    SipSira = model.SipSira,
-                    SipSeri = model.SipSeri,
-                    Statu = model.Statu
-                };
+            var siparis = _context.Orders.FirstOrDefault(o => o.UserTableId == UserTableID);
 
-                _context.Orders.Add(siparis);
+            if (siparis != null)
+            {
+                _context.Orders.Remove(siparis);
                 _context.SaveChanges();
 
-                return Ok("İşlem başarıyla tamamlandı.");
+                return Ok("Sipariş başarıyla silindi.");
             }
 
-            return BadRequest("Geçersiz istek.");
-
-
+            return NotFound("Sipariş bulunamadı.");
         }
+
+        [HttpPost]
+        public IActionResult OrderStatuUpdate(int SipSira,int Statu)
+        {
+            var siparisler = _context.Orders.Where(o => o.SipSira == SipSira);
+
+            if (siparisler.Any())
+            {
+                foreach (var siparis in siparisler)
+                {
+                    siparis.Statu = Statu;
+                }
+
+                _context.SaveChanges();
+
+                return Ok("Siparişlerin statüleri başarıyla güncellendi.");
+            }
+
+            return NotFound("Siparişler bulunamadı.");
+        }
+
 
 
 

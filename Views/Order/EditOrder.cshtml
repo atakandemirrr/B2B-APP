@@ -4,14 +4,25 @@
     ViewData["Title"] = "Sipariş Oluştur";
 
 }
-
+@section Scripts {
+    <script src="~/js/forcreateorder/formoperations.js"></script>
+}
 
 <div class="container-fluid list-products">
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header pb-0">
-                    <h5>Sipariş Oluştur</h5>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h5>Sipariş Güncelle</h5>
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-4 d-flex justify-content-end">
+                            <button id="onayGonderme" readonly data-statu="1" class="btn btn-primary">Onaya Gönder</button>
+                        </div>
+                    </div>
                     <input id="CreDate" type="hidden" value="@DateTime.Today.ToString("yyyy-MM-dd")">
                     <input id="CariKod" type="hidden" value="@Model.FirstOrDefault()?.CariKod">
                     <input id="SipSira" type="hidden" value="@Model.FirstOrDefault()?.SipSira">
@@ -28,6 +39,32 @@
                             </div>
                             <div class="col-md-5">
                                 <label>Müşteri Adı : @Model.FirstOrDefault()?.CariKod </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="col-xl-6 xl-100 xl-mt-job">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="col-sm-6">
+                                        <label class="col-form-label text-end pt-0">Sipariş Tarihi</label>
+                                        <div class="input-group">
+                                            <input class="datepicker-here form-control digits" type="text" data-language="tr">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="col-sm-6 xs-mt-period">
+                                        <label class="col-form-label text-end pt-0">Teslim Tarihi</label>
+                                        <div class="input-group">
+                                            <input class="datepicker-here form-control digits" type="text" data-language="tr">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -70,7 +107,7 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-hover" id="SipTable">
+                    <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th>Ürün</th>
@@ -80,15 +117,15 @@
 
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="SipTable">
                             @foreach (var order in Model)
                             {
                                 <tr>
-                                    <th>@order.StokKod</th>
-                                    <th>@order.Piece</th>
-                                    <th>@order.Price</th>
-                                    <th>@order.Total</th>
-
+                                    <td>@order.StokKod</td>
+                                    <td>@order.Piece</td>
+                                    <td>@order.Price</td>
+                                    <td>@order.Total</td>
+                                    <td><button id="silButton" readonly data-usertableid="@order.UserTableId" class="badge bg-danger text-white">Sil</button></td>
                                 </tr>
 
                             }

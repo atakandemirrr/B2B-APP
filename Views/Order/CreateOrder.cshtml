@@ -4,14 +4,25 @@
     ViewData["Title"] = "Sipariş Oluştur";
 
 }
-
+@section Scripts {
+    <script src="~/js/forcreateorder/formoperations.js"></script>
+}
 
 <div class="container-fluid list-products">
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header pb-0">
-                    <h5>Sipariş Oluştur</h5>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h5>Sipariş Oluştur</h5>
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-4 d-flex justify-content-end">
+                            <button id="onayGonderme" readonly data-statu="1" class="btn btn-primary">Onaya Gönder</button>
+                        </div>
+                    </div>
                     <input id="CreDate" type="hidden" value="@DateTime.Today.ToString("yyyy-MM-dd")">
                     <input id="CariKod" type="hidden" value="@Model.CariBilgileri.Rows[0]["CariKod"]">
                     <input id="SipSira" type="hidden" value="@Model.CariBilgileri.Rows[0]["SipSira"]">
@@ -31,6 +42,33 @@
                             </div>
                         </div>
                     </div>
+                    <div class="mb-4">
+                        <div class="col-xl-6 xl-100 xl-mt-job">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="col-sm-6">
+                                        <label class="col-form-label text-end pt-0">Sipariş Tarihi</label>
+                                        <div class="input-group">
+                                            <input class="datepicker-here form-control digits" type="text" data-language="tr">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="col-sm-6 xs-mt-period">
+                                        <label class="col-form-label text-end pt-0">Teslim Tarihi</label>
+                                        <div class="input-group">
+                                            <input class="datepicker-here form-control digits" type="text" data-language="tr">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="mb-4">
                         <div class="row">
                             <div class="col-md-3">
@@ -78,7 +116,7 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-hover" id="SipTable">
+                    <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th>Ürün</th>
@@ -88,7 +126,7 @@
 
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="SipTable">
                         </tbody>
                     </table>
                 </div>
@@ -96,30 +134,3 @@
         </div>
     </div>
 </div>
-<script>
-    // Sil düğmelerini seç
-    const silButtons = document.querySelectorAll(".silButton");
-
-    // Her sil düğmesine tıklanınca çalışacak kod
-    silButtons.forEach(function (button) {
-        button.addEventListener("click", function () {
-            // Tıklanan düğmenin üstündeki satırı bul
-            const row = this.closest("tr");
-
-            // Satırın verilerini al
-            const urun = row.cells[0].textContent;
-            const siparisAdeti = row.cells[1].textContent;
-            const birim = row.cells[2].textContent;
-            const toplam = row.cells[3].textContent;
-
-            // Silme işlemini gerçekleştir
-            row.remove();
-
-
-        });
-    });
-
-
-</script>
-
-

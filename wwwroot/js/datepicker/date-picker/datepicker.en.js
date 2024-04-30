@@ -1,13 +1,15 @@
 "use strict";
-;(function ($) { $.fn.datepicker.language['en'] = {
-    days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-    daysShort: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-    daysMin: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-    months: ['January','February','March','April','May','June', 'July','August','September','October','November','December'],
-    monthsShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-    today: 'Today',
-    clear: 'Clear',
-    dateFormat: 'mm/dd/yyyy',
-    timeFormat: 'hh:ii aa',
-    firstDay: 0
-}; })(jQuery);
+; (function ($) {
+    $.fn.datepicker.language['tr'] = {
+        days: ['Pazar', 'Pazartesi', 'Salý', 'Çarþamba', 'Perþembe', 'Cuma', 'Cumartesi'],
+        daysShort: ['Pz', 'Pt', 'Sa', 'Ca', 'Pe', 'Cu', 'Ct'],
+        daysMin: ['Pz', 'Pt', 'Sa', 'Ca', 'Pe', 'Cu', 'Ct'],
+        months: ['Ocak', 'Þubat', 'Mart', 'Nisan', 'Mayýs', 'Haziran', 'Temmuz', 'Aðustos', 'Eylül', 'Ekim', 'Kasým', 'Aralýk'],
+        monthsShort: ['Oca', 'Þub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Aðu', 'Eyl', 'Eki', 'Kas', 'Ara'],
+        today: 'Bugün',
+        clear: 'Temizle',
+        dateFormat: 'dd.mm.yyyy',
+        timeFormat: 'hh:ii',
+        firstDay: 1
+    };
+})(jQuery);
