@@ -172,6 +172,7 @@ function SilIslemleri(userTableId) {
 $(document).on('click', '#onayGonderme', async function () {
     var SipSira = $("#SipSira").val();
     var Statu = $(this).attr("data-statu");
+   
     StatuUpdate(SipSira, Statu);
 })
 
@@ -182,7 +183,13 @@ function StatuUpdate(SipSira, Statu) {
         data: { SipSira: SipSira, Statu: Statu },
         success: function (response) {
 
-            alert("Onaya Gönderildi");
+            Swal.fire({
+                position: 'top-bottom',
+                icon: 'success',
+                title: "Siparişiniz Onaya Gönderilmiştir.",
+                showConfirmButton: false,
+                timer: 15000
+            })
 
         },
         error: function (xhr, textStatus, errorThrown) {
@@ -191,6 +198,8 @@ function StatuUpdate(SipSira, Statu) {
         }
     });
 }
+
+
 
 
 

@@ -3,9 +3,7 @@
     ViewData["Title"] = "Siparişler";
 
 }
-@section Scripts {
-    <script src="~/js/forcreateorder/formoperations.js"></script>
-}
+
 
 <div class="container-fluid list-products">
     <div class="row">
@@ -16,11 +14,10 @@
                 </div>
                 <div class="card-header pb-0 text-right">
                     <a class="btn btn-primary" asp-controller="Order" asp-action="CreateOrder"><span>Sipariş Oluştur</span></a>
-
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive product-table">
-                        <table class="display" id="basic-1">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
                             <thead>
                                 <tr>
                                     <th>Sipariş No</th>
@@ -67,10 +64,10 @@
                                                 @*  <a href="/Order/EditOrder/@Cari["SipSira"]"><li data-feather="edit"></li></a>  *@
                                                 <form asp-controller="Order" asp-action="EditOrder" method="get">
                                                     <input type="hidden" name="SipSira" value="@Cari["SipSira"]" />
-                                                    <button type="submit" class="btn btn-primary btn-xs">Edit</button>
+                                                    <button type="submit" class="btn btn-primary btn-xs">Düzenle</button>
                                                 </form>
                                             <td>
-                                           
+
 
                                         </tr>
                                     }
@@ -83,5 +80,3 @@
         </div>
     </div>
 </div>
-
-
