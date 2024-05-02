@@ -76,9 +76,9 @@ function EkleIslemleri() {
         SipSira: SipSira,
         SipSeri: SipSeri,
         Statu: Statu
-       
+
     };
-        
+
 
     $.ajax({
         type: "POST",
@@ -172,7 +172,7 @@ function SilIslemleri(userTableId) {
 $(document).on('click', '#onayGonderme', async function () {
     var SipSira = $("#SipSira").val();
     var Statu = $(this).attr("data-statu");
-   
+
     StatuUpdate(SipSira, Statu);
 })
 
@@ -198,10 +198,52 @@ function StatuUpdate(SipSira, Statu) {
         }
     });
 }
+///yazdırma işlemi
+$(document).on('click', '#btnprint', async function () {
+
+    printDiv2();
+})
+
+function printDiv2() {
+    var printContents = document.getElementById('bodyContent').innerHTML;
+    var originalContents = document.body.innerHTML;
+    document.body.innerHTML = printContents;
+    window.print();
+    document.body.innerHTML = originalContents;
+}
+
+///indirme işlemi
+$(document).on('click', '#indirmeButonu', async function () {
+
+    dow();
+})
+
+function dow() {
+    //burada css ve js leri almıyor bunu kontrol et
+    const sayfaHtml = document.documentElement.outerHTML;
 
 
+    const dosyaAdı = 'sayfa.html';
+    const dosyaIcerigi = new Blob([sayfaHtml], { type: 'text/html' });
 
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(dosyaIcerigi);
+    link.download = dosyaAdı;
+    link.click();
 
+}
+
+/// modal açma işlemi orders viewden order sheetteki viewı aç
+$(document).on('click', '#openModal1905', async function () {
+
+    openModal222();
+})
+function openModal222() {
+    // Modalı bul
+    var modal = document.getElementById("exampleModal");
+    // Modalı göster
+    modal.style.display = "block";
+}
 
 
 

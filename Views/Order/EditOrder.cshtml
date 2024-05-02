@@ -137,34 +137,3 @@
         </div>
     </div>
 </div>
-
-
-@*
-<script>
-    // Sil düğmelerini seç
-    const silButtons = document.querySelectorAll(".silButton");
-
-    // Her sil düğmesine tıklanınca çalışacak kod
-    silButtons.forEach(function (button) {
-        button.addEventListener("click", function () {
-            // Tıklanan düğmenin üstündeki satırı bul
-            const row = this.closest("tr");
-
-            // Satırın verilerini al
-            const urun = row.cells[0].textContent;
-            const siparisAdeti = row.cells[1].textContent;
-            const birim = row.cells[2].textContent;
-            const toplam = row.cells[3].textContent;
-
-            // Silme işlemini gerçekleştir
-            row.remove();
-
-
-        });
-    });
-
-
-</script>
-
-
- *@
