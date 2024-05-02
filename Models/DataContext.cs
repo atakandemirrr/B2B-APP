@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace B2B_Deneme.Models
 {
-    public class DataContext :DbContext
+    public class DataContext : DbContext
     {
         private readonly IConfiguration _configuration;
 
@@ -50,7 +50,7 @@ namespace B2B_Deneme.Models
             }
         }
 
-        public DataTable CariBilgileri(string Mail )
+        public DataTable CariBilgileri(string Mail)
         {
             using (SqlConnection connection = new SqlConnection(GetConnectionString()))
             {
@@ -67,7 +67,7 @@ namespace B2B_Deneme.Models
         {
             using (SqlConnection connection = new SqlConnection(GetConnectionString()))
             {
-                connection.Open();  
+                connection.Open();
                 SqlCommand command = new SqlCommand("SELECT O.Statu as Statu, CONCAT('SİP', '-', O.SipSira) as SipNo,O.SipSira as SipSira,O.OrderDate KTRH,O.DeliveryDate TESTRH,SUM(O.Total) SIPTUTAR FROM [B2BAPP].[dbo].[Orders] O LEFT JOIN  dbo.CARI_HESAPLAR C  ON   C.cari_kod = O.CariKod COLLATE Turkish_CI_AS WHERE C.cari_EMail = '" + Mail + "' GROUP BY O.SipSeri, O.SipSira,O.DeliveryDate,O.OrderDate,O.Statu", connection);
                 SqlDataAdapter adapter = new SqlDataAdapter(command);
                 DataTable dataTable = new DataTable();
@@ -75,6 +75,17 @@ namespace B2B_Deneme.Models
                 return dataTable;
             }
         }
-
+        public DataTable OrderPrintInformations(int SipSira)
+        {
+            using (SqlConnection connection = new SqlConnection(GetConnectionString()))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("SELECT CONCAT('SİP', '-', O.SipSira) as SipNo,O.SipSira as SipSira,O.OrderDate KTRH,O.DeliveryDate TESTRH,[dbo].[fn_CarininIsminiBul](0, O.CariKod) Cari,[dbo].[fn_StokIsmi](O.StokKod) StokaAdi,CONVERT(NVARCHAR, O.Piece) Adet,CONVERT(NVARCHAR, O.Price) Fiyat,O.Total SIPTUTAR FROM[B2BAPP].[dbo].[Orders] O LEFT JOIN  dbo.CARI_HESAPLAR C  ON   C.cari_kod = O.CariKod COLLATE Turkish_CI_AS WHERE O.SipSira = '" + SipSira + "' UNION ALL SELECT '' as SipNo, '' as SipSira, '' KTRH, '' TESTRH, '' Cari, '' StokaAdi, '' Adet, '' Fiyat, SUM(O.Total) SIPTUTAR FROM[B2BAPP].[dbo].[Orders] O LEFT JOIN  dbo.CARI_HESAPLAR C  ON   C.cari_kod = O.CariKod COLLATE Turkish_CI_AS WHERE O.SipSira = '" + SipSira + "' GROUP BY O.SipSeri, O.SipSira, O.DeliveryDate, O.OrderDate, O.Statu ", connection);
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+                return dataTable;
+            }
+        }
     }
 }

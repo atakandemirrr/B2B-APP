@@ -138,12 +138,9 @@ namespace B2B_Deneme.Controllers
             return NotFound("Siparişler bulunamadı.");
         }
 
-
-
-
         public IActionResult ProductSelection(string stockCode)
         {
-            var stoklar = _context.Stok().AsEnumerable().ToList(); ;
+            var stoklar = _context.Stok().AsEnumerable().ToList();
             var selectedRow = stoklar.FirstOrDefault(row => row["sto_kod"].ToString() == stockCode);
             if (selectedRow != null)
             {
@@ -160,10 +157,22 @@ namespace B2B_Deneme.Controllers
                 decimal fiyat = 0;
                 return Json(fiyat);
             }
+        }
+
+        public IActionResult OrderSheet(int SipSira)
+        {
+            VMMusteriler model = new VMMusteriler();
+            model.OrderPrintInformations = _context.OrderPrintInformations(SipSira).AsEnumerable().ToList();
+
+            if (model.OrderPrintInformations.Any())
+            {
 
 
-
+                return View(model);
+            }
+            return View();
 
         }
+
     }
 }

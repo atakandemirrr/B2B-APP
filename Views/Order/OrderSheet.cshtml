@@ -1,0 +1,156 @@
+﻿@model B2B_Deneme.ViewModels.VMMusteriler
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@* 
+<div class="container invoice">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <div id="bodyContent">
+                        <div>
+                            <div class="row invo-header">
+                                <div class="col-sm-6">
+                                    <div class="media">
+                                        <div class="media-left"><a href="index.html"><img class="media-object img-60" src="~/images/logo/logo-1.png" alt=""></a></div>
+                                        <div class="media-body m-l-20">
+                                            <h4 class="media-heading f-w-600">Sipariş Formu</h4>
+                                            <p>Firmamız Bilgileri Gelicek<br><span class="digits">289-335-6503</span></p>
+                                        </div>
+                                    </div>
+                                    <!-- End Info-->
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="text-md-end text-xs-center">
+                                        <h3>@Model.OrderPrintInformations[0]["SipNo"]<span class="digits counter"></span></h3>
+                                        <p>Sipariş Tarihi: @Model.OrderPrintInformations[0]["KTRH"]<span class="digits"></span><br>                                                            Teslim Tarihi: @Model.OrderPrintInformations[0]["TESTRH"]<span class="digits"></span></p>
+                                    </div>
+                                    <!-- End Title                                 -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End InvoiceTop-->
+                        <div class="row invo-profile">
+                            <div class="col-xl-4">
+                                <div class="media">
+                                    <div class="media-left"><img class="media-object rounded-circle img-60" src="~/images/user/7.jpg" alt=""></div>
+                                    <div class="media-body m-l-20">
+                                        <h4 class="media-heading f-w-600">@Model.OrderPrintInformations[0]["Cari"]</h4>
+                                        <p>email bilgisi<br><span class="digits">tel no</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-8">
+                                <div class="text-xl-end" id="project">
+                                    <h6>Sipariş Açıklaması</h6>
+                                    <p>açıklama Açıklama.....</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Invoice Mid-->
+                        <div>
+                            <div class="table-responsive invoice-table" id="table">
+                                <table class="table table-bordered table-striped">
+                                    <tbody>
+                                        <tr>
+                                            <td class="item">
+                                                <h6 class="p-2 mb-0">Item Description</h6>
+                                            </td>
+                                            <td class="Hours">
+                                                <h6 class="p-2 mb-0">Hours</h6>
+                                            </td>
+                                            <td class="Rate">
+                                                <h6 class="p-2 mb-0">Rate</h6>
+                                            </td>
+                                            <td class="subtotal">
+                                                <h6 class="p-2 mb-0">Sub-total</h6>
+                                            </td>
+                                        </tr>
+                                        @foreach (var Order in Model.OrderPrintInformations)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <p class="m-0">@Order["StokaAdi"]</p>
+                                                </td>
+                                                <td>
+                                                    <p class="itemtext digits">@Order["Adet"]</p>
+                                                </td>
+                                                <td>
+                                                    @if (Order["StokaAdi"].ToString() == "")
+                                                    {
+                                                        <h6 class="mb-0 p-2">Toplam</h6>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p class="itemtext digits">@Order["Fiyat"]</p>
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @if (Order["StokaAdi"].ToString() == "")
+                                                    {
+                                                        <h6 class="mb-0 p-2">@Order["SIPTUTAR"]</h6>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p class="itemtext digits">@Order["SIPTUTAR"]</p>
+                                                    }
+
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- End Table-->
+                            <div class="row mt-3">
+                                <div class="col-md-8">
+                                    <div>
+                                        <p class="legal"><strong>Teşekkürler!</strong></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End InvoiceBot-->
+                    </div>
+                    <div class="col-sm-12 text-center mt-3">
+                        <button class="btn btn btn-primary me-2" type="button" onclick="printBodyContent()">Print</button>
+                        <button class="btn btn-secondary" type="button">Cancel</button>
+                    </div>
+                    <!-- End Invoice-->
+                    <!-- End Invoice Holder-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ *@

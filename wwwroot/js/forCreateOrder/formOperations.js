@@ -167,7 +167,7 @@ function SilIslemleri(userTableId) {
     });
 }
 
-//sil butonuna tılayınca çalışan işlemler veritabanındam silme işlemi yapılıyor.
+//oanaya gönder butonuna tılayınca çalışan işlemler veritabanında update işlemi yapılıyor.
 
 $(document).on('click', '#onayGonderme', async function () {
     var SipSira = $("#SipSira").val();

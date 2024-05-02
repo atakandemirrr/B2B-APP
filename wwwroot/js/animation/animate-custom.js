@@ -8,7 +8,7 @@ var animate_custom = {
     init: function() {
         $('.js-triggeraNimation').click(function(e){
             e.preventDefault();
-            var anim = $('.js-animations').val();
+            var anim =  $('.js-animations').val();
             testAnim(anim);
         });
         $('.js-animations').change(function(){
