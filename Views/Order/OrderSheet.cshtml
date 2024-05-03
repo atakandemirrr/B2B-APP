@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body" id="bodyContent2">
                     <div id="bodyContent">
                         <div>
                             <div class="row invo-header">
@@ -119,6 +119,7 @@
                     <div class="col-sm-12 text-center mt-3">
                         <button class="btn btn btn-primary me-2" type="button" id="btnprint" readonly>Print</button>
                         <button class="btn btn btn-primary me-2" type="button" id="indirmeButonu" readonly>İndir</button>
+                        <button class="btn btn btn-primary me-2" type="button" id="downloadButton" readonly>İndir222</button>
                         <button class="btn btn-secondary" type="button">Cancel</button>
                         <button type="button" class="btn btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Print2</button>
                     </div>
@@ -251,3 +252,22 @@
 
 
 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var downloadButton = document.getElementById("downloadButton");
+
+        downloadButton.addEventListener("click", function () {
+            // HTML içeriğini seç
+            var content = document.getElementById("bodyContent2");
+
+            // html2canvas ile HTML içeriğini canvas'a dönüştür
+            html2canvas(content).then(function (canvas) {
+                // canvas'ı jsPDF ile kullanarak PDF'e ekleyin
+                var imgData = canvas.toDataURL('image/png');
+                var pdf = new jsPDF();
+                pdf.addImage(imgData, 'PNG', 0, 0);
+                pdf.save("ornek.pdf");
+            });
+        });
+    });
+</script>

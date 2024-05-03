@@ -204,34 +204,54 @@ $(document).on('click', '#btnprint', async function () {
     printDiv2();
 })
 
+
 function printDiv2() {
+    /*style css içerisinde printableArea id sini içeren alanı kapat ondan dolayı çalışmıyor*/
     var printContents = document.getElementById('bodyContent').innerHTML;
     var originalContents = document.body.innerHTML;
     document.body.innerHTML = printContents;
-    window.print();
-    document.body.innerHTML = originalContents;
+    setTimeout(function () {
+        window.print();
+        document.body.innerHTML = originalContents;
+    }, 500);
 }
 
-///indirme işlemi
-$(document).on('click', '#indirmeButonu', async function () {
+/////indirme işlemi
+//$(document).on('click', '#indirmeButonu', async function () {
 
-    dow();
-})
+//    convertToPDF();
+//})
 
-function dow() {
-    //burada css ve js leri almıyor bunu kontrol et
-    const sayfaHtml = document.documentElement.outerHTML;
+//function convertToPDF() {
+//    // HTML içeriğini al
+//    const sayfaHtml = document.documentElement.outerHTML;
+
+//    // Yeni bir jsPDF nesnesi oluştur
+//    var doc = new jsPDF();
+
+//    // HTML içeriğini PDF'e dönüştür
+//    doc.html(sayfaHtml, {
+//        callback: function (doc) {
+//            // PDF'i indir
+//            doc.save("sayfa.pdf");
+//        }
+//    });
+//}
+
+//function dow() {
+//    //burada css ve js leri almıyor bunu kontrol et
+//    const sayfaHtml = document.documentElement.outerHTML;
 
 
-    const dosyaAdı = 'sayfa.html';
-    const dosyaIcerigi = new Blob([sayfaHtml], { type: 'text/html' });
+//    const dosyaAdı = 'sayfa.html';
+//    const dosyaIcerigi = new Blob([sayfaHtml], { type: 'text/html' });
 
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(dosyaIcerigi);
-    link.download = dosyaAdı;
-    link.click();
+//    const link = document.createElement('a');
+//    link.href = URL.createObjectURL(dosyaIcerigi);
+//    link.download = dosyaAdı;
+//    link.click();
 
-}
+//}
 
 /// modal açma işlemi orders viewden order sheetteki viewı aç
 $(document).on('click', '#openModal1905', async function () {
