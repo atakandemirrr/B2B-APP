@@ -87,5 +87,18 @@ namespace B2B_Deneme.Models
                 return dataTable;
             }
         }
+
+        public DataTable OrderApprovals()
+        {
+            using (SqlConnection connection = new SqlConnection(GetConnectionString()))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("SELECT CONCAT('SİP', '-', O.SipSira) as SipNo,[dbo].[fn_CarininIsminiBul](0, O.CariKod) Cari,O.SipSira as SipSira,O.OrderDate KTRH,O.DeliveryDate TESTRH,SUM(O.Total) SIPTUTAR FROM[B2BAPP].[dbo].[Orders] O WHERE O.Statu = 1 GROUP BY O.SipSeri, O.SipSira, O.DeliveryDate, O.OrderDate, [dbo].[fn_CarininIsminiBul](0, O.CariKod),O.Statu", connection);
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+                return dataTable;
+            }
+        }
     }
 }
