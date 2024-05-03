@@ -104,7 +104,7 @@
      01. General CSS Start
 ==========================**/
 /*yazdırma işlemi için kullanılıyor */
-@media print {
+/*@media print {
     body * {
         visibility: hidden;
     }
@@ -118,7 +118,7 @@
         left: 0;
         top: 0;
     }
-}
+}*/
 
 
 html {

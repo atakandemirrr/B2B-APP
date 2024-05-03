@@ -121,7 +121,7 @@
                         <button class="btn btn btn-primary me-2" type="button" id="indirmeButonu" readonly>İndir</button>
                         <button class="btn btn btn-primary me-2" type="button" id="downloadButton" readonly>İndir222</button>
                         <button class="btn btn-secondary" type="button">Cancel</button>
-                        <button type="button" class="btn btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Print2</button>
+                        <button type="button" class="btn btn btn-primary me-2" onclick="applyModalStyles()" data-bs-toggle="modal" data-bs-target="#exampleModal">Print2</button>
                     </div>
                     <!-- End Invoice-->
                     <!-- End Invoice Holder-->
@@ -253,6 +253,54 @@
 
 
 <script>
+    //// test aşamasındaki alanlar
+    function applyModalStyles() {
+        // Modal içeriğini seç
+        var modalContent = document.getElementById("exampleModal");
+
+        // CSS kurallarını içeren bir <style> elementi oluştur
+        var style = document.createElement("style");
+        style.type = "text/css";
+        style.innerHTML = `
+                    /* Burada modal içeriği için stil kurallarını tanımlayın */
+                    /* Örnek: modal içeriğini merkezlemek için */
+                           body * {
+                            visibility: hidden;
+                        }
+
+                                #exampleModal, #exampleModal * {
+                            visibility: visible;
+                        }
+
+                            #exampleModal {
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                        }
+                `;
+
+        // <style> elementini modal içine ekleyerek CSS kurallarını uygula
+        modalContent.appendChild(style);
+    }
+
+    ////////////////////////////////////////////
+    $('#exampleModal').on('hidden.bs.modal', function (e) {
+        resetModalStyles();
+    });
+
+    function resetModalStyles() {
+        // Modal içeriğini seç
+        var modalContent = document.getElementById("exampleModal");
+
+        // Modal içeriğine eklenmiş olan stil elementini bul ve kaldır
+        var styleElement = modalContent.querySelector("style");
+        if (styleElement) {
+            modalContent.removeChild(styleElement);
+        }
+    }
+
+
+    /////////////////////////////////////////////
     document.addEventListener("DOMContentLoaded", function () {
         var downloadButton = document.getElementById("downloadButton");
 
