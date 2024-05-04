@@ -159,7 +159,7 @@ namespace B2B_Deneme.Controllers
             }
         }
 
-        [HttpPost]
+
         public IActionResult OrderSheet(int SipSira)
         {
             VMMusteriler model = new VMMusteriler();
@@ -179,13 +179,8 @@ namespace B2B_Deneme.Controllers
             VMMusteriler model = new VMMusteriler();
             model.OrderApprovals = _context.OrderApprovals().AsEnumerable().ToList();
 
-            if (model.OrderApprovals.Any())
-            {
-
                 return View(model);
-            }
-            return View();
-
+     
         }
 
     }

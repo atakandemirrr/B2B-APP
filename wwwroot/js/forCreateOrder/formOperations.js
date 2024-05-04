@@ -254,17 +254,25 @@ function printDiv2() {
 //}
 
 // modal açma işlemi orders viewden order sheetteki viewı aç
-$(document).on('click', '#openModal1905', async function () {
+//$(document).on('click', '#openModal1905', async function () {
 
-    openModal222();
-})
-function openModal222() {
-    // Modalı bul
-    var modal = document.getElementById("exampleModal");
-     // Modalı göster
-    modal.style.display = "block";
+//    openModal222();
+//})
+//function openModal222() {
+//    // Modalı bul
+//    var modal = document.getElementById("exampleModal");
+//     // Modalı göster
+//    modal.style.display = "block";
   
-}
+//}
+
+
+$(document).on('click', '#openModalButton', async function () {
+    $('#exampleModal').modal('show');
+})
+
+
+
 
 
 

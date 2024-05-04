@@ -43,9 +43,10 @@
                                             <td>@Order["TESTRH"]</td>
                                             <td>@Order["SIPTUTAR"]</td>
                                             <td style="text-align: center;">
-                                                <a id="view" data-sipsira="@Order["SipSira"]" href="#" @* "@Url.Action("OrderSheet", "Order", new { SipSira = Order["SipSira"] })" *@>
-                                                    <i style="font-size: 24px;" class="icofont icofont-list"></i>
-                                                </a>
+                                                @*    <a id="view10" data-sipsira="@Order["SipSira"]" href="#" class="btn">
+                                        <i style="font-size: 24px;" class="icofont icofont-list"></i>
+                                        </a> *@
+                                                <button type="button" class="btn btn btn-primary me-2" id="triggerModalButton" >Print Modal</button>
 
                                             </td>
                                             <td>
@@ -70,7 +71,8 @@
                                             </td>
 
                                         </tr>
-                                    }}
+                                    }
+                                }
                             </tbody>
                         </table>
                     </div>
@@ -79,4 +81,6 @@
         </div>
     </div>
 </div>
+
+
 
