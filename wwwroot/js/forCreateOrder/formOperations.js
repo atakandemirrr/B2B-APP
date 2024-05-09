@@ -1,4 +1,17 @@
-﻿
+﻿var Modal1 = $('#MCreateCustomer');
+
+$(document).on('click', '#editCustomer', async function () {
+    var SipSira = $(this).attr("data-SipSira");
+    Modal1.load("/Order/OrderSheet2/" + SipSira + "", function () {
+
+        Modal1.modal('show');
+    })
+});
+
+
+
+
+
 /*siprariş formu için 08.04.2024 tarihind Atakan yaptı*/
 $("#stockSelect").change(function () {
     var stockCode = $(this).val();
@@ -267,9 +280,6 @@ function printDiv2() {
 //}
 
 
-$(document).on('click', '#openModalButton', async function () {
-    $('#exampleModal').modal('show');
-})
 
 
 

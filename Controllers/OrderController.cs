@@ -26,7 +26,7 @@ namespace B2B_Deneme.Controllers
             VMMusteriler model = new VMMusteriler();
 
             model.CariSipBilgileri = _context.CariSipBilgileri(email).AsEnumerable().ToList(); ;
-             return View(model);
+            return View(model);
         }
 
         [HttpGet]
@@ -54,7 +54,7 @@ namespace B2B_Deneme.Controllers
         [HttpGet]
         public IActionResult EditOrder(string SipSira)
         {
-           
+
             var orders = _context.Orders.Where(x => x.SipSira.ToString() == SipSira).ToList();
             if (orders.Count != 0)
             {
@@ -86,7 +86,7 @@ namespace B2B_Deneme.Controllers
                     OrderDate = model.OrderDate,
                     DeliveryDate = model.DeliveryDate
                 };
-                
+
 
                 _context.Orders.Add(siparis);
                 _context.SaveChanges();
@@ -119,7 +119,7 @@ namespace B2B_Deneme.Controllers
         }
 
         [HttpPost]
-        public IActionResult OrderStatuUpdate(int SipSira,int Statu)
+        public IActionResult OrderStatuUpdate(int SipSira, int Statu)
         {
             var siparisler = _context.Orders.Where(o => o.SipSira == SipSira);
 
@@ -144,12 +144,12 @@ namespace B2B_Deneme.Controllers
             var selectedRow = stoklar.FirstOrDefault(row => row["sto_kod"].ToString() == stockCode);
             if (selectedRow != null)
             {
-             
-              
+
+
 
                 decimal fiyat = Convert.ToDecimal(selectedRow["sfiyat_fiyati"]);
 
-      
+
                 return Json(fiyat);
             }
             else
@@ -173,15 +173,29 @@ namespace B2B_Deneme.Controllers
 
         }
 
+        [Route("Order/OrderSheet2")]
+        [Route("Order/OrderSheet2/{SipSira}")]
+        public PartialViewResult OrderSheet2(int SipSira = 0)
+        {
+            VMMusteriler model = new VMMusteriler();
+            if (SipSira != 0)
+                model.OrderPrintInformations = _context.OrderPrintInformations(SipSira).AsEnumerable().ToList();
+            return PartialView("OrderSheet", model);
+        }
+
+
+
         [HttpGet]
         public IActionResult OrderApproval()
         {
             VMMusteriler model = new VMMusteriler();
             model.OrderApprovals = _context.OrderApprovals().AsEnumerable().ToList();
 
-                return View(model);
-     
+            return View(model);
+
         }
+
+
 
     }
 }

@@ -6,6 +6,7 @@
 }
 @section Scripts {
     <script src="~/js/forcreateorder/formoperations.js"></script>
+    
 }
 <div class="container-fluid list-products">
     <div class="row">
@@ -43,11 +44,9 @@
                                             <td>@Order["TESTRH"]</td>
                                             <td>@Order["SIPTUTAR"]</td>
                                             <td style="text-align: center;">
-                                                @*    <a id="view10" data-sipsira="@Order["SipSira"]" href="#" class="btn">
-                                        <i style="font-size: 24px;" class="icofont icofont-list"></i>
-                                        </a> *@
-                                                <button type="button" class="btn btn btn-primary me-2" id="triggerModalButton" >Print Modal</button>
 
+                                                <a id="editCustomer" data-SipSira="@Order["SipSira"]" href="#"><i style="font-size: 24px;" class="icofont icofont-list"></i></a>
+                                             
                                             </td>
                                             <td>
                                                 <div class="row">
@@ -82,5 +81,17 @@
     </div>
 </div>
 
+<div id="MCreateCustomer" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+</div>
 
+<script>
+    // var Modal1 = $('#exampleModal2');
+    // $(document).on('click', '#openOrderSheet', async function () {
+    //     var SipSira = $(this).attr("data-sipsira");
+    //     Modal1.load("/Order/_OrderSheet/" + SipSira + "", function () {
+
+    //         Modal1.modal('show');
+    //     })
+    // });
+</script>
 
