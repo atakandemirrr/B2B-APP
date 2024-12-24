@@ -1,45 +1,48 @@
 @model B2B_Deneme.ViewModels.VMMusteriler
 @{
-   ViewData["Title"] = "Müşteri Listesi";
+    ViewData["Title"] = "Müşteri Listesi";
 }
+<div class="container-fluid list-products">
+    <div class="row">
+        <div class="col-sm-12">
 
-    <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Müşteri Listesi</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive  product-table">
+                        <table class="table table-hover" id="basic-1">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Cari Kod</th>
+                                    <th scope="col">Müşteri Adı</th>
+                                    <th scope="col">E Mail</th>
+                                    <th scope="col">Cep Telefonu</th>
+                                    <th scope="col">Vergi Dairesi</th>
+                                    <th scope="col">Vergi No</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var musteri in Model.Musteriler)
+                                {
+                                    <tr>
+                                        <td>@musteri["Sira"]</td>
+                                        <td>@musteri["cari_kod"]</td>
+                                        <td>@musteri["cari_unvan1"]</td>
+                                        <td>@musteri["cari_EMail"]</td>
+                                        <td>@musteri["cari_CepTel"]</td>
+                                        <td>@musteri["cari_vdaire_adi"]</td>
+                                        <td>@musteri["cari_vdaire_no"]</td>
 
-        <div class="card">
-            <div class="card-header">
-                <h5>Müşteri Listesi</h5>
-            </div>
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Cari Kod</th>
-                            <th scope="col">Müşteri Adı</th>
-                            <th scope="col">E Mail</th>
-                            <th scope="col">Cep Telefonu</th>
-                        <th scope="col">Vergi Dairesi</th>
-                        <th scope="col">Vergi No</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    @foreach (var musteri in Model.Musteriler)
-                    {
-                        <tr>
-                            <td>@musteri["Sira"]</td>
-                            <td>@musteri["cari_kod"]</td>
-                            <td>@musteri["cari_unvan1"]</td>
-                            <td>@musteri["cari_EMail"]</td>
-                            <td>@musteri["cari_CepTel"]</td>
-                            <td>@musteri["cari_vdaire_adi"]</td>
-                            <td>@musteri["cari_vdaire_no"]</td>
-
-                        </tr>
-                    }
-                    
-                    
-                    </tbody>
-                </table>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+</div>

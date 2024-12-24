@@ -11,10 +11,10 @@
                 <div class="card-header pb-0">
                     <h5>Kullanıcılar</h5>
                 </div>
-                <div class="card-header pb-0 text-right" >
+               @*  <div class="card-header pb-0 text-right" >
                     <a class="btn btn-primary" asp-controller="Users" asp-action="CreateUser"><span>Kullanıcı Oluştur</span></a>
                  
-                </div>
+                </div> *@
                 <div class="card-body">
                     <div class="table-responsive product-table">
                         <table class="display" id="basic-1">
@@ -24,11 +24,11 @@
                                     <th>Kayıt Tarihi</th>
                                     <th>Adı</th>
                                     <th>Soyadı</th>
-                                    <th>EMail</th>
+                                     <th>EMail</th>
                                     <th>Paralo</th>
                                     <th>Admin Mi</th>
                                     <th>Durumu</th>
-                                    <th>Statü Değiştir</th>
+                                    <th>Statü Değiştir</th> 
                                 </tr>
                             </thead>
                             <tbody>
@@ -40,9 +40,9 @@
                                         <td>@User.CreDate</td>
                                         <td class="font-success">@User.Name</td>
                                         <td>@User.Surname</td>
-                                        <td>@User.Email</td>
-                                        <td>@User.Password</td>
-                                        <td>
+                                         <td>@User.Email</td>
+                                        <td>@User.Password</td> 
+                                         <td>
                                             @if (User.IsAdmin == false)
                                             {
                                                 <span class="badge bg-danger text-white">Hayır</span>
@@ -52,7 +52,7 @@
                                                 <span class="badge bg-success text-white">Evet</span>
                                             }
                                         </td>
-                                        <td>
+                                         <td>
                                             @if (User.IsPasivve == false)
                                             {
                                                 <span class="badge bg-success text-white">Aktif</span>
@@ -80,10 +80,10 @@
                                         </td>
                                         <td>
                                             <a href="/Users/UpdateUser/@User.UserId" ><li data-feather="edit"></li></a>
-                                        <td>
+                                        <td>  
                                  </tr>
                                 }
-                            </tbody>
+                            </tbody> 
                         </table>
                     </div>
                 </div>
